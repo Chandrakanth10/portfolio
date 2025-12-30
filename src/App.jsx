@@ -13,7 +13,7 @@ const App = () => {
           setActiveSection(entry.target.id);
         }
       });
-    }, { threshold: 0.5 });
+    }, { rootMargin: '-20% 0px -35% 0px' });
 
     const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => observer.observe(section));
@@ -32,6 +32,10 @@ const App = () => {
     { id: 'skills', label: 'Skills' },
   ];
 
+  const handleNavClick = (id) => {
+    setActiveSection(id);
+  };
+
   return (
     <div className="min-h-screen text-[var(--color-text-primary)] font-sans selection:bg-[var(--color-brand-green)] selection:text-black">
 
@@ -42,7 +46,7 @@ const App = () => {
           {/* Left: Logo & Nav Links */}
           <div className="flex items-center gap-8">
             {/* Logo */}
-            <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0, 0)}>
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <div className="p-1.5 rounded-[4px] bg-[var(--color-bg-surface)] border border-[var(--color-border-subtle)]">
                 <Terminal size={16} className="text-[var(--color-brand-green)]" />
               </div>
@@ -95,9 +99,10 @@ const App = () => {
               <a
                 key={link.id}
                 href={`#${link.id}`}
+                onClick={() => handleNavClick(link.id)}
                 className={`block px-4 py-2 text-sm transition-all duration-200 rounded-[4px] ${activeSection === link.id
-                    ? 'text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 font-medium translate-x-1'
-                    : 'text-[var(--color-text-secondary)] hover:text-white hover:bg-[var(--color-bg-surface)]'
+                  ? 'text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 font-medium translate-x-1'
+                  : 'text-[var(--color-text-secondary)] hover:text-white hover:bg-[var(--color-bg-surface)]'
                   }`}
               >
                 {link.label}
@@ -339,6 +344,7 @@ const App = () => {
 
           {/* Skills */}
           <section id="skills" className="mb-24 scroll-mt-24">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Skills</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Languages */}
               <div className="p-6 border border-[var(--color-border-subtle)] rounded-[6px] bg-[var(--color-bg-surface)]/40 hover:bg-[var(--color-bg-surface)] transition-colors duration-300">
