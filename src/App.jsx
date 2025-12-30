@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Mail, Github, Linkedin, ExternalLink, Code2, Server, Globe, ChevronRight, Star, ChevronDown, Terminal, Cpu, Box, Layout, GraduationCap } from 'lucide-react';
+import { Mail, Github, Linkedin, ExternalLink, Code2, Server, Globe, ChevronRight, Star, ChevronDown, Terminal, Cpu, Box, Layout, GraduationCap, Database, Cloud, Layers, Command, FileJson, Zap } from 'lucide-react';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -345,86 +345,72 @@ const App = () => {
           {/* Skills */}
           <section id="skills" className="mb-24 scroll-mt-24">
             <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Skills</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Languages */}
-              <div className="p-6 border border-[var(--color-border-subtle)] rounded-[6px] bg-[var(--color-bg-surface)]/40 hover:bg-[var(--color-bg-surface)] transition-colors duration-300">
-                <div className="flex items-center gap-3 mb-6 text-white">
-                  <div className="p-2 border border-[var(--color-border-subtle)] rounded-[6px] bg-[#1a1a1a]">
-                    <Code2 size={16} />
-                  </div>
-                  <h3 className="font-semibold tracking-tight">Languages</h3>
-                </div>
+            {/* 3-Column Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+              {/* Column 1: Languages */}
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-8">Languages</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">TypeScript</span>
-                    <span className="text-[var(--color-text-primary)]">Advanced</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">Golang</span>
-                    <span className="text-[var(--color-text-primary)]">Proficient</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">Python</span>
-                    <span className="text-[var(--color-text-primary)]">Intermediate</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">Rust</span>
-                    <span className="text-[var(--color-text-primary)]">Basic</span>
-                  </div>
+                  {[
+                    { name: "TypeScript", icon: Code2 },
+                    { name: "Python", icon: Terminal },
+                    { name: "Go", icon: Box },
+                    { name: "Rust", icon: Cpu },
+                    { name: "SQL", icon: Database }
+                  ].map(skill => (
+                    <div key={skill.name} className="flex items-center gap-3 group cursor-default">
+                      <div className="w-10 h-10 rounded-[6px] bg-[#1a1a1a] border border-[#2e2e2e] flex items-center justify-center group-hover:border-[var(--color-brand-green)] transition-colors duration-300">
+                        <skill.icon size={18} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors font-medium">{skill.name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Backend */}
-              <div className="p-6 border border-[var(--color-border-subtle)] rounded-[6px] bg-[var(--color-bg-surface)]/40 hover:bg-[var(--color-bg-surface)] transition-colors duration-300">
-                <div className="flex items-center gap-3 mb-6 text-white">
-                  <div className="p-2 border border-[var(--color-border-subtle)] rounded-[6px] bg-[#1a1a1a]">
-                    <Server size={16} />
-                  </div>
-                  <h3 className="font-semibold tracking-tight">Backend</h3>
-                </div>
+              {/* Column 2: Frameworks */}
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-8">Frameworks</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">PostgreSQL</span>
-                    <span className="text-[var(--color-text-primary)]">Expert</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">Docker/K8s</span>
-                    <span className="text-[var(--color-text-primary)]">Proficient</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">GCP/AWS</span>
-                    <span className="text-[var(--color-text-primary)]">Advanced</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">Redis</span>
-                    <span className="text-[var(--color-text-primary)]">Proficient</span>
-                  </div>
+                  {[
+                    { name: "React", icon: Globe },
+                    { name: "Next.js", icon: Layout },
+                    { name: "Tailwind CSS", icon: Layers },
+                    { name: "Node.js", icon: Server },
+                    { name: "gRPC", icon: Zap }
+                  ].map(skill => (
+                    <div key={skill.name} className="flex items-center gap-3 group cursor-default">
+                      <div className="w-10 h-10 rounded-[6px] bg-[#1a1a1a] border border-[#2e2e2e] flex items-center justify-center group-hover:border-[var(--color-brand-green)] transition-colors duration-300">
+                        <skill.icon size={18} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors font-medium">{skill.name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Frontend */}
-              <div className="p-6 border border-[var(--color-border-subtle)] rounded-[6px] bg-[var(--color-bg-surface)]/40 hover:bg-[var(--color-bg-surface)] transition-colors duration-300">
-                <div className="flex items-center gap-3 mb-6 text-white">
-                  <div className="p-2 border border-[var(--color-border-subtle)] rounded-[6px] bg-[#1a1a1a]">
-                    <Globe size={16} />
-                  </div>
-                  <h3 className="font-semibold tracking-tight">Frontend</h3>
-                </div>
+              {/* Column 3: Infrastructure */}
+              <div>
+                <h3 className="text-xl font-semibold text-white mb-8">Infrastructure</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">React</span>
-                    <span className="text-[var(--color-text-primary)]">Expert</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">Next.js</span>
-                    <span className="text-[var(--color-text-primary)]">Proficient</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[var(--color-text-secondary)]">Tailwind</span>
-                    <span className="text-[var(--color-text-primary)]">Expert</span>
-                  </div>
+                  {[
+                    { name: "PostgreSQL", icon: Database },
+                    { name: "AWS", icon: Cloud },
+                    { name: "Docker", icon: Box },
+                    { name: "Redis", icon: Layers },
+                    { name: "Kafka", icon: Command }
+                  ].map(skill => (
+                    <div key={skill.name} className="flex items-center gap-3 group cursor-default">
+                      <div className="w-10 h-10 rounded-[6px] bg-[#1a1a1a] border border-[#2e2e2e] flex items-center justify-center group-hover:border-[var(--color-brand-green)] transition-colors duration-300">
+                        <skill.icon size={18} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                      </div>
+                      <span className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors font-medium">{skill.name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
+
             </div>
           </section>
 
