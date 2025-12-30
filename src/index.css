@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-deep: #000000;
+  --color-bg-surface: #121212;
+  --color-border-subtle: #2e2e2e;
+  --color-text-primary: #ededed;
+  --color-text-secondary: #a1a1a1;
+  --font-sans: 'Inter', sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg-deep);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility to force hardware acceleration usually helps with smooth animations */
+.hardware-accelerated {
+  transform: translateZ(0);
+}
