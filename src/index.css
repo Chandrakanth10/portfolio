@@ -2,12 +2,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-deep: #000000;
-  --color-bg-surface: #121212;
+  --color-bg-deep: #121212;
+  --color-bg-surface: #171717;
   --color-border-subtle: #2e2e2e;
   --color-text-primary: #ededed;
-  --color-text-secondary: #a1a1a1;
+  --color-text-secondary: #9b9b9b;
+  --color-brand-green: #3ECF8E;
+  --color-brand-green-hover: #30ba78;
   --font-sans: 'Inter', sans-serif;
+  --radius-base: 6px;
 }
 
 :root {
@@ -22,7 +25,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utility to force hardware acceleration usually helps with smooth animations */
-.hardware-accelerated {
-  transform: translateZ(0);
+/* Custom Scrollbar for Chrome/Safari/Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-subtle);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3e3e3e;
 }
