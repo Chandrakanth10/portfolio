@@ -1,3 +1,8 @@
+# Portfolio
+
+This project has been deployed using GitHub Pages.
+You can access the portfolio at: [https://chandrakanth10.github.io/portfolio/](https://chandrakanth10.github.io/portfolio/)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
