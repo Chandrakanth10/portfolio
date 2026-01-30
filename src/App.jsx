@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Mail, Github, Linkedin, ExternalLink, Code2, Server, Globe, ChevronRight, Star, ChevronDown, Terminal, Cpu, Box, Layout, GraduationCap, Database, Cloud, Layers, Command, FileJson, Zap, ShoppingBag } from 'lucide-react';
+import { Mail, Github, Linkedin, ExternalLink, Code2, Server, Globe, ChevronRight, Star, ChevronDown, Terminal, Cpu, Box, Layout, GraduationCap, Database, Cloud, Layers, Command, FileJson, Zap, ShoppingBag, BookOpen, FileText, Mic, Video, Users, PenTool } from 'lucide-react';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -7,20 +7,34 @@ const App = () => {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, { rootMargin: '-20% 0px -35% 0px' });
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100; // Offset for header
 
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach(section => observer.observe(section));
+      // Check if we're at the bottom of the page
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        setActiveSection(navLinks[navLinks.length - 1].id);
+        return;
+      }
+
+      for (const link of navLinks) {
+        const section = document.getElementById(link.id);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            setActiveSection(link.id);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
 
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
-      sections.forEach(section => observer.unobserve(section));
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -28,12 +42,27 @@ const App = () => {
     { id: 'hero', label: 'About' },
     { id: 'work', label: 'Experience' },
     { id: 'education', label: 'Education' },
-    { id: 'projects', label: 'Projects' },
+    { id: 'research', label: 'Research' },
+    { id: 'reviews', label: 'Peer Reviews' },
+    { id: 'media', label: 'Media' },
+    { id: 'writing', label: 'Writing' },
     { id: 'skills', label: 'Skills' },
   ];
 
-  const handleNavClick = (id) => {
-    setActiveSection(id);
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Account for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      setActiveSection(id);
+    }
   };
 
   return (
@@ -99,7 +128,7 @@ const App = () => {
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                onClick={() => handleNavClick(link.id)}
+                onClick={(e) => handleNavClick(e, link.id)}
                 className={`block px-4 py-2 text-sm transition-all duration-200 rounded-[4px] ${activeSection === link.id
                   ? 'text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 font-medium translate-x-1'
                   : 'text-[var(--color-text-secondary)] hover:text-white hover:bg-[var(--color-bg-surface)]'
@@ -114,7 +143,7 @@ const App = () => {
         {/* Main Content */}
         <main className="flex-1 md:pl-64">
           {/* Hero Section */}
-          <section id="hero" className="mb-24 pt-4">
+          <section id="hero" className="mb-12 pt-4">
             <div className="mb-12">
 
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--color-border-subtle)] bg-[var(--color-bg-surface)] text-xs font-medium text-[var(--color-text-secondary)] mb-8 hover:border-[var(--color-text-secondary)] transition-colors cursor-default">
@@ -125,12 +154,14 @@ const App = () => {
                 Based in USA
               </div>
 
-              <h1 className="text-5xl sm:text-7xl font-bold tracking-tighter mb-6 text-white">
-                Chandrakanth Puligundla <br />
-                <span className="text-[var(--color-text-secondary)]">Software Engineer at Albertsons</span>
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tighter mb-4 text-white">
+                Chandrakanth Puligundla
               </h1>
+              <p className="text-2xl sm:text-3xl text-[var(--color-text-secondary)] font-bold tracking-tight mb-8">
+                Software Engineer at Albertsons
+              </p>
 
-              <p className="text-xl text-[var(--color-text-secondary)] max-w-2xl mb-10 leading-relaxed">
+              <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mb-8 leading-relaxed">
                 Software Engineer specializing in scalable APIs, distributed systems, and cloud infrastructure. Experienced in building high-availability services handling billions of requests.
               </p>
 
@@ -151,10 +182,10 @@ const App = () => {
             </div>
           </section>
 
-          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-24"></div>
+          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12"></div>
 
           {/* Work History */}
-          <section id="work" className="mb-24 scroll-mt-24">
+          <section id="work" className="mb-12 scroll-mt-12">
             <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Work Experience</h2>
 
             <div className="relative border-l border-[var(--color-border-subtle)] ml-3 md:ml-6 space-y-12">
@@ -229,10 +260,10 @@ const App = () => {
             </div>
           </section>
 
-          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-24"></div>
+          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12"></div>
 
           {/* Education */}
-          <section id="education" className="mb-24 scroll-mt-24">
+          <section id="education" className="mb-12 scroll-mt-12">
             <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Education</h2>
 
             <div className="relative border-l border-[var(--color-border-subtle)] ml-3 md:ml-6 space-y-12">
@@ -254,84 +285,213 @@ const App = () => {
             </div>
           </section>
 
-          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-24"></div>
+          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12"></div>
 
-          {/* Projects */}
-          <section id="projects" className="mb-24 scroll-mt-24">
-            <div className="flex justify-between items-end mb-12">
-              <h2 className="text-3xl font-bold tracking-tight text-white">Selected Projects</h2>
-              <a href="#" className="text-sm text-[var(--color-text-secondary)] hover:text-white flex items-center gap-1 transition-colors duration-200 group">
-                View All <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-
+          {/* Research Paper Publications */}
+          <section id="research" className="mb-12 scroll-mt-12">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Research Paper Publications</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Project 1 */}
+              {/* Research Paper 1 */}
               <div className="group bg-[var(--color-bg-surface)]/30 border border-[var(--color-border-subtle)] rounded-[6px] p-6 hover:border-[var(--color-brand-green)] hover:bg-[var(--color-bg-surface)] transition-all duration-300 cursor-pointer">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">Consensus Core</h3>
+                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">Distributed Consensus in Edge Networks</h3>
                   <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
                 </div>
                 <p className="text-[var(--color-text-secondary)] text-sm mb-6 leading-relaxed">
-                  High-performance Paxos implementation handling 10k+ requests/sec. Designed for fault tolerance and sub-millisecond latency.
+                  Published in IEEE International Conference on Cloud Computing (CLOUD). Proposes a lightweight consensus mechanism optimized for edge computing environments with intermittent connectivity.
                 </p>
                 <div className="flex gap-2">
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Rust</span>
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">gRPC</span>
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">IEEE CLOUD 2024</span>
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Paper</span>
                 </div>
               </div>
 
-              {/* Project 2 */}
+              {/* Research Paper 2 */}
               <div className="group bg-[var(--color-bg-surface)]/30 border border-[var(--color-border-subtle)] rounded-[6px] p-6 hover:border-[var(--color-brand-green)] hover:bg-[var(--color-bg-surface)] transition-all duration-300 cursor-pointer">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">Neural Search</h3>
+                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">Optimizing Vector Search at Scale</h3>
                   <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
                 </div>
                 <p className="text-[var(--color-text-secondary)] text-sm mb-6 leading-relaxed">
-                  Vector similarity search engine optimizing HNSW indexing. Scales to billions of vectors with real-time updates.
+                  Published in ACM SIGMOD. Presents a novel indexing strategy for high-dimensional vector data, reducing query latency by 40% in billion-scale datasets.
                 </p>
                 <div className="flex gap-2">
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Python</span>
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">C++</span>
-                </div>
-              </div>
-
-              {/* Project 3 */}
-              <div className="group bg-[var(--color-bg-surface)]/30 border border-[var(--color-border-subtle)] rounded-[6px] p-6 hover:border-[var(--color-brand-green)] hover:bg-[var(--color-bg-surface)] transition-all duration-300 cursor-pointer">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">StreamFlow</h3>
-                  <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
-                </div>
-                <p className="text-[var(--color-text-secondary)] text-sm mb-6 leading-relaxed">
-                  Real-time event streaming service processing TBs of data. Guarantees exactly-once delivery and aggregation.
-                </p>
-                <div className="flex gap-2">
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Go</span>
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Kafka</span>
-                </div>
-              </div>
-
-              {/* Project 4 */}
-              <div className="group bg-[var(--color-bg-surface)]/30 border border-[var(--color-border-subtle)] rounded-[6px] p-6 hover:border-[var(--color-brand-green)] hover:bg-[var(--color-bg-surface)] transition-all duration-300 cursor-pointer">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">Infra UI</h3>
-                  <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
-                </div>
-                <p className="text-[var(--color-text-secondary)] text-sm mb-6 leading-relaxed">
-                  Visual editor for Terraform configurations. Features real-time state sync, dependency graphing, and drift detection.
-                </p>
-                <div className="flex gap-2">
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">React</span>
-                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">TypeScript</span>
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">SIGMOD 2023</span>
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Paper</span>
                 </div>
               </div>
             </div>
           </section>
 
-          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-24"></div>
+          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12"></div>
+
+          {/* Peer Reviews */}
+          <section id="reviews" className="mb-12 scroll-mt-12">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Peer Reviews</h2>
+            <div className="relative border-l border-[var(--color-border-subtle)] ml-3 md:ml-6 space-y-12">
+              <div className="relative pl-10 md:pl-14">
+                <div className="absolute -left-[24px] top-0 w-12 h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
+                  <BookOpen className="w-6 h-6 text-zinc-400" />
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                  <h3 className="text-xl font-semibold text-white">Journal of Parallel and Distributed Computing</h3>
+                  <span className="text-sm font-mono text-[var(--color-text-secondary)]">2024</span>
+                </div>
+                <div className="text-lg text-[var(--color-brand-green)] mb-2">Reviewer</div>
+                <p className="text-[var(--color-text-secondary)] leading-relaxed max-w-3xl">
+                  Reviewed 3 manuscripts focusing on distributed consensus algorithms and fault tolerance in large-scale systems.
+                </p>
+              </div>
+
+              <div className="relative pl-10 md:pl-14">
+                <div className="absolute -left-[24px] top-0 w-12 h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
+                  <FileText className="w-6 h-6 text-zinc-400" />
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
+                  <h3 className="text-xl font-semibold text-white">IEEE Transactions on Cloud Computing</h3>
+                  <span className="text-sm font-mono text-[var(--color-text-secondary)]">2023</span>
+                </div>
+                <div className="text-lg text-[var(--color-brand-green)] mb-2">Reviewer</div>
+                <p className="text-[var(--color-text-secondary)] leading-relaxed max-w-3xl">
+                  Provided critical feedback on 5 papers related to serverless computing architectures and performance optimization.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12"></div>
+
+          {/* Media Appearances */}
+          <section id="media" className="mb-12 scroll-mt-12">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Media Appearances</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="group bg-[var(--color-bg-surface)]/30 border border-[var(--color-border-subtle)] rounded-[6px] p-6 hover:border-[var(--color-brand-green)] hover:bg-[var(--color-bg-surface)] transition-all duration-300 cursor-pointer">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">The Future of Distributed Systems</h3>
+                  <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                </div>
+                <p className="text-[var(--color-text-secondary)] text-sm mb-6 leading-relaxed">
+                  Featured guest on the "Tech Frontiers" podcast, discussing the evolution of consensus protocols and their application in modern cloud infrastructure.
+                </p>
+                <div className="flex gap-2">
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Podcast</span>
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Tech Frontiers</span>
+                </div>
+              </div>
+
+              <div className="group bg-[var(--color-bg-surface)]/30 border border-[var(--color-border-subtle)] rounded-[6px] p-6 hover:border-[var(--color-brand-green)] hover:bg-[var(--color-bg-surface)] transition-all duration-300 cursor-pointer">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-semibold text-lg text-white group-hover:text-[var(--color-brand-green)] transition-colors">Scaling Al Infrastructure</h3>
+                  <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                </div>
+                <p className="text-[var(--color-text-secondary)] text-sm mb-6 leading-relaxed">
+                  Interviewed by "TechDaily" on the challenges of scaling infrastructure for large language models and vector databases.
+                </p>
+                <div className="flex gap-2">
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Article</span>
+                  <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">TechDaily</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12"></div>
+
+          {/* Technical Writing */}
+          <section id="writing" className="mb-12 scroll-mt-12">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Technical Writing</h2>
+            <div className="relative border-l border-[var(--color-border-subtle)] ml-3 md:ml-6 space-y-6 mb-10">
+
+              {/* HackerNoon */}
+              <div className="relative pl-10 md:pl-14">
+                <div className="absolute -left-[24px] top-0 w-12 h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
+                  <PenTool className="w-6 h-6 text-[#00FF00]" />
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                  <a href="https://hackernoon.com/u/ckp" target="_blank" rel="noopener noreferrer" className="text-xl font-semibold text-white hover:text-[var(--color-brand-green)] transition-colors inline-flex items-center gap-2">
+                    HackerNoon <ExternalLink size={16} />
+                  </a>
+                </div>
+
+                <div className="space-y-5">
+                  <a href="https://hackernoon.com/metas-$10-billion-bet-building-an-undersea-cable-empire-to-power-its-ai-future" target="_blank" rel="noopener noreferrer" className="group block cursor-pointer">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="text-lg text-white font-medium group-hover:text-[var(--color-brand-green)] transition-colors">Meta's $10 Billion Bet: Building an Undersea Cable Empire to Power Its AI Future</h4>
+                      <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                    </div>
+                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-2">
+                      Analyzing Meta's strategic investment in subsea infrastructure to support their growing AI computational demands.
+                    </p>
+                    <div className="flex gap-2">
+                      <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">AI Strategy</span>
+                      <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Infrastructure</span>
+                    </div>
+                  </a>
+
+                  <a href="https://hackernoon.com/ais-dirty-secret-the-energy-cost-of-training-the-next-gpt-5" target="_blank" rel="noopener noreferrer" className="group block cursor-pointer">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="text-lg text-white font-medium group-hover:text-[var(--color-brand-green)] transition-colors">AI's Dirty Secret: The Energy Cost of Training the Next GPT-5</h4>
+                      <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                    </div>
+                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-2">
+                      Examining the environmental impact and energy consumption challenges associated with training large language models.
+                    </p>
+                    <div className="flex gap-2">
+                      <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Green AI</span>
+                      <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Sustainability</span>
+                    </div>
+                  </a>
+
+                  <a href="https://hackernoon.com/forget-chatbots-meet-actionbots-why-amazons-nova-act-could-reshape-web-interaction" target="_blank" rel="noopener noreferrer" className="group block cursor-pointer">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="text-lg text-white font-medium group-hover:text-[var(--color-brand-green)] transition-colors">Forget Chatbots, Meet ActionBots: Why Amazon's Nova Act Could Reshape Web Interaction</h4>
+                      <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                    </div>
+                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-2">
+                      Discussing the shift from conversational AI to agentic 'action-bots' capable of performing complex tasks.
+                    </p>
+                    <div className="flex gap-2">
+                      <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Agents</span>
+                      <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">Future of Web</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Towards Data Science */}
+            <div className="relative border-l border-[var(--color-border-subtle)] ml-3 md:ml-6 space-y-6">
+              <div className="relative pl-10 md:pl-14">
+                <div className="absolute -left-[24px] top-0 w-12 h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
+                  <PenTool className="w-6 h-6 text-[#FF6347]" />
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                  <h3 className="text-xl font-semibold text-white">Towards Data Science</h3>
+                </div>
+
+                <div className="space-y-5">
+                  <div className="group cursor-pointer">
+                    <div className="flex justify-between items-start mb-1">
+                      <h4 className="text-lg text-white font-medium group-hover:text-[var(--color-brand-green)] transition-colors">Efficient Vector Search in Production</h4>
+                      <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
+                    </div>
+                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-2">
+                      Exploring practical strategies for scaling vector search using HNSW indexes and quantization techniques for real-time AI applications.
+                    </p>
+                    <div className="flex gap-2">
+                      <span className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">AI/ML</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12"></div>
 
           {/* Skills */}
-          <section id="skills" className="mb-24 scroll-mt-24">
+          <section id="skills" className="mb-12 scroll-mt-12">
             <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Skills</h2>
             {/* 3-Column Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -424,7 +584,7 @@ const App = () => {
 
         </main>
       </div>
-    </div>
+    </div >
   );
 };
 
