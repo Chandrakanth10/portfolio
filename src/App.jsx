@@ -294,7 +294,7 @@ const App = () => {
                 IEEE Xplore Profile <ArrowUpRight size={14} />
               </a>
             </div>
-            <p className="text-[var(--color-text-secondary)] mb-10">3 peer-reviewed IEEE conference papers published in 2025.</p>
+            <p className="text-[var(--color-text-secondary)] mb-10">4 peer-reviewed IEEE conference papers in 2025.</p>
 
             <div className="space-y-4">
               {/* Paper 1 — Solo, featured */}
@@ -312,7 +312,23 @@ const App = () => {
                 </p>
               </a>
 
-              {/* Paper 2 */}
+              {/* Paper 2 — Solo, presented, awaiting IEEE publication */}
+              <a href="https://ieeexplore.ieee.org/author/659163992295229" target="_blank" rel="noopener noreferrer" className="group block border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300 bg-gradient-to-r from-[var(--color-bg-surface)]/40 to-transparent">
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">Sole Author</span>
+                    <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">IEEE ICCCNT 2025</span>
+                    <span className="text-[10px] font-medium uppercase tracking-widest text-yellow-400 bg-yellow-400/10 px-2.5 py-1 rounded-[4px]">Presented</span>
+                  </div>
+                  <ArrowUpRight size={16} className="text-[var(--color-text-secondary)] group-hover:text-[var(--color-brand-green)] transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100" />
+                </div>
+                <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-[var(--color-brand-green)] transition-colors mb-2">Scalable Intelligence: A Survey on Deploying AI Models in Distributed Cloud Platforms</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed max-w-3xl">
+                  Surveys scalable deployment strategies for AI models across distributed cloud platforms, examining orchestration, resource optimization, and inference at scale.
+                </p>
+              </a>
+
+              {/* Paper 3 — Co-authored */}
               <a href="https://ieeexplore.ieee.org/author/659163992295229" target="_blank" rel="noopener noreferrer" className="group block border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">IEEE AIBThings 2025</span>
@@ -325,7 +341,7 @@ const App = () => {
                 <p className="text-xs text-[var(--color-text-secondary)]/60">A. Jadhav, <span className="text-white/70">C. Puligundla</span>, S. R. Chigurupati, P. Jalan, S. Bhogavalli</p>
               </a>
 
-              {/* Paper 3 */}
+              {/* Paper 4 — Co-authored */}
               <a href="https://ieeexplore.ieee.org/author/659163992295229" target="_blank" rel="noopener noreferrer" className="group block border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">IEEE AIBThings 2025</span>
@@ -344,34 +360,158 @@ const App = () => {
 
           {/* Peer Reviews */}
           <section id="reviews" className="mb-12 scroll-mt-12">
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Peer Reviews</h2>
-            <div className="relative border-l border-[var(--color-border-subtle)] ml-3 md:ml-6 space-y-12">
-              <div className="relative pl-10 md:pl-14">
-                <div className="absolute -left-[24px] top-0 w-12 h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
-                  <BookOpen className="w-6 h-6 text-zinc-400" />
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Peer Reviews</h2>
+            <p className="text-[var(--color-text-secondary)] mb-10">Invited reviewer for international journals and conferences.</p>
+
+            <div className="space-y-4">
+              {/* ICLR 2026 Workshop RSI */}
+              <div className="border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">ICLR 2026</span>
+                    <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">Workshop RSI</span>
+                  </div>
+                  <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">1 Paper</span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
-                  <h3 className="text-xl font-semibold text-white">PLOS ONE</h3>
-                  <span className="text-sm font-mono text-[var(--color-text-secondary)]">2025</span>
+
+                <div className="space-y-5">
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Vision-Guided Iterative Refinement for Frontend Code Generation</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Critic-in-the-loop framework leveraging VLMs for automated frontend code refinement.</p>
+                  </div>
                 </div>
-                <div className="text-lg text-[var(--color-brand-green)] mb-2">Reviewer</div>
-                <p className="text-[var(--color-text-secondary)] leading-relaxed max-w-3xl">
-                  Reviewed manuscript PONE-D-25-17433: "Syntactic denoising and multi-strategy auxiliary enhancement for Aspect-based Sentiment Analysis." Completed full review cycle including re-review of revised submission.
-                </p>
               </div>
 
-              <div className="relative pl-10 md:pl-14">
-                <div className="absolute -left-[24px] top-0 w-12 h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
-                  <FileText className="w-6 h-6 text-zinc-400" />
+              {/* ICLR 2026 Workshop AIMS */}
+              <div className="border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">ICLR 2026</span>
+                    <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">Workshop AIMS</span>
+                  </div>
+                  <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">3 Papers</span>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
-                  <h3 className="text-xl font-semibold text-white">CVAMD 2025</h3>
-                  <span className="text-sm font-mono text-[var(--color-text-secondary)]">2025</span>
+
+                <div className="space-y-5">
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">SOK: A Taxonomy of Attack Vectors and Defense Strategies for Agentic Supply Chain Runtime</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Runtime-focused taxonomy of data and tool supply chain threats for AI agents.</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Code Driven Game Theoretic Evolution of LLM Agents as Holistic Strategy Generators</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Evolutionary tournament framework for LLM agents as holistic policy generators.</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Optimal Aggregation Mechanisms for AI Benchmarking and Platinum Benchmarks</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Game-theoretic model of benchmark aggregation with optimal weighting rules.</p>
+                  </div>
                 </div>
-                <div className="text-lg text-[var(--color-brand-green)] mb-2">Reviewer</div>
-                <p className="text-[var(--color-text-secondary)] leading-relaxed max-w-3xl">
-                  Reviewed 2 papers: "Dual-LVT: A Dual Attention Language-Vision Transformer for Tumor Segmentation" and "Hierarchical Classification for Improved Histopathology Image Analysis."
-                </p>
+              </div>
+
+              {/* PLOS ONE — Grouped */}
+              <div className="border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">PLOS ONE</span>
+                    <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">Journal</span>
+                  </div>
+                  <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">2 Reviews</span>
+                </div>
+
+                <div className="space-y-5">
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Syntactic Denoising and Multi-Strategy Auxiliary Enhancement for Aspect-based Sentiment Analysis</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Full review cycle including re-review of revised submission.</p>
+                    <p className="text-xs text-[var(--color-text-secondary)]/50 mt-2 font-mono">PONE-D-25-17433</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Research of Text Paraphrase Generation Based on Self-Contrastive Learning</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Reviewed revised manuscript on paraphrase generation using self-contrastive learning techniques.</p>
+                    <p className="text-xs text-[var(--color-text-secondary)]/50 mt-2 font-mono">PONE-D-25-16567R1</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CVAMD 2025 — MICCAI Workshop */}
+              <div className="border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">CVAMD 2025</span>
+                    <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">MICCAI Workshop</span>
+                  </div>
+                  <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">2 Papers</span>
+                </div>
+
+                <div className="space-y-5">
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Dual-LVT: A Dual Attention Language-Vision Transformer for Tumor Segmentation</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Reviewed vision-language transformer approach for automated tumor segmentation.</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Hierarchical Classification for Improved Histopathology Image Analysis</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Reviewed hierarchical classification methods for histopathology image analysis.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* DravidianLangTech 2026 — ACL Workshop */}
+              <div className="border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">DravidianLangTech 2026</span>
+                    <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">ACL Workshop</span>
+                  </div>
+                  <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">5 Papers</span>
+                </div>
+
+                <div className="space-y-5">
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Multi Architecture Transformer Ensemble for Detecting Abusive Tamil Text Targeting Women</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">CUET_SYNTHETICA — transformer ensemble approach for abusive language detection in Tamil.</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Unsupervised Cross-Lingual Machine Translation for Low-Resource Indian Languages</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Cross-lingual translation methods for low-resource Dravidian languages.</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Shared Task on Prompt Style Recovery for Large Language Models in Telugu</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Prompt style recovery shared task targeting LLM outputs in Telugu.</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Hope Speech Detection in Code-Mixed Tulu Language Using Multiple Features</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">MUCS — multi-feature approach for hope speech detection in code-mixed Tulu.</p>
+                  </div>
+
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Prompting and LoRA Adaptation for Tamil Abusive Language Detection</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">VITECH — comparative study of open LLMs with prompting and LoRA for Tamil abusive language detection.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* LT-EDI 2026 */}
+              <div className="border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">LT-EDI 2026</span>
+                    <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">Conference</span>
+                  </div>
+                  <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">1 Paper</span>
+                </div>
+
+                <div className="space-y-5">
+                  <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">Overview of the Multimodal Homophobia and Transphobia Meme Classification Shared Task</h3>
+                    <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">Reviewed shared task overview on multimodal classification of homophobic and transphobic memes.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
