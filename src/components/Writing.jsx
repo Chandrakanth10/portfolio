@@ -45,7 +45,7 @@ const Writing = () => (
               <p className="text-[var(--color-text-secondary)] leading-relaxed mb-2">{article.description}</p>
               <div className="flex gap-2">
                 {article.tags.map((tag) => (
-                  <span key={tag} className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-border-subtle)] text-[var(--color-text-secondary)] rounded-[4px] bg-[#1a1a1a]">{tag}</span>
+                  <span key={tag} className="text-[10px] uppercase font-medium tracking-wide px-2 py-1 border border-[var(--color-brand-amber)]/20 text-[var(--color-brand-amber)] rounded-[4px] bg-[var(--color-brand-amber)]/5">{tag}</span>
                 ))}
               </div>
             </a>

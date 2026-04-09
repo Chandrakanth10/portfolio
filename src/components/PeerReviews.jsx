@@ -2,7 +2,7 @@ const PeerReviews = () => (
   <section id="reviews" className="mb-12 scroll-mt-12">
     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4">
       <h2 className="text-3xl font-bold tracking-tight text-white">Peer Reviews</h2>
-      <span className="text-sm text-[var(--color-text-secondary)] mt-2 sm:mt-0">14 papers across 5 venues</span>
+      <span className="text-sm text-[var(--color-brand-amber)] mt-2 sm:mt-0">14 papers across 5 venues</span>
     </div>
     <p className="text-[var(--color-text-secondary)] mb-10">Invited reviewer for international journals and conferences.</p>
 
@@ -12,7 +12,7 @@ const PeerReviews = () => (
         <div className="p-6 md:p-8 pb-0 md:pb-0">
           <div className="flex items-start justify-between gap-4 mb-2">
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">ICLR 2026</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">ICLR 2026</span>
               <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">Top-Tier ML Conference</span>
             </div>
             <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px] flex-shrink-0">4 Papers</span>
@@ -50,7 +50,7 @@ const PeerReviews = () => (
       <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">PLOS ONE</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">PLOS ONE</span>
             <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">Journal</span>
           </div>
           <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">2 Papers</span>
@@ -73,7 +73,7 @@ const PeerReviews = () => (
       <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">CVAMD 2025</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">CVAMD 2025</span>
             <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">MICCAI Workshop</span>
           </div>
           <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">2 Papers</span>
@@ -94,7 +94,7 @@ const PeerReviews = () => (
       <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">DravidianLangTech 2026</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">DravidianLangTech 2026</span>
             <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">ACL Workshop</span>
           </div>
           <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">5 Papers</span>
@@ -127,7 +127,7 @@ const PeerReviews = () => (
       <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">LT-EDI 2026</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">LT-EDI 2026</span>
             <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">Workshop</span>
           </div>
           <span className="text-xs font-medium text-[var(--color-text-secondary)] bg-[var(--color-bg-surface)] px-2.5 py-1 rounded-[4px]">1 Paper</span>

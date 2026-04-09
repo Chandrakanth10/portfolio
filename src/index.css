@@ -9,6 +9,8 @@
   --color-text-secondary: #9b9b9b;
   --color-brand-green: #3ECF8E;
   --color-brand-green-hover: #30ba78;
+  --color-brand-amber: #F59E0B;
+  --color-brand-amber-hover: #D97706;
   --font-sans: 'Inter', sans-serif;
   --radius-base: 6px;
 }

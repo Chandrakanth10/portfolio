@@ -8,13 +8,13 @@ const Research = () => (
         IEEE Xplore Profile <ArrowUpRight size={14} />
       </a>
     </div>
-    <p className="text-[var(--color-text-secondary)] mb-10">4 peer-reviewed IEEE conference papers in 2025.</p>
+    <p className="text-[var(--color-text-secondary)] mb-10"><span className="text-[var(--color-brand-amber)]">4</span> peer-reviewed IEEE conference papers in 2025.</p>
 
     <div className="space-y-4">
       <a href="https://ieeexplore.ieee.org/author/659163992295229" target="_blank" rel="noopener noreferrer" className="group block border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300 bg-gradient-to-r from-[var(--color-bg-surface)]/40 to-transparent">
         <div className="flex items-start justify-between gap-4 mb-3">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">Sole Author</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">Sole Author</span>
             <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">IEEE ISTAS 2025</span>
           </div>
           <ArrowUpRight size={16} className="text-[var(--color-text-secondary)] group-hover:text-[var(--color-brand-green)] transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100" />
@@ -28,7 +28,7 @@ const Research = () => (
       <a href="https://ieeexplore.ieee.org/author/659163992295229" target="_blank" rel="noopener noreferrer" className="group block border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300 bg-gradient-to-r from-[var(--color-bg-surface)]/40 to-transparent">
         <div className="flex items-start justify-between gap-4 mb-3">
           <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-green)] bg-[var(--color-brand-green)]/10 px-2.5 py-1 rounded-[4px]">Sole Author</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">Sole Author</span>
             <span className="text-[10px] uppercase font-medium tracking-wide text-[var(--color-text-secondary)]">IEEE ICCCNT 2025</span>
             <span className="text-[10px] font-medium uppercase tracking-widest text-yellow-400 bg-yellow-400/10 px-2.5 py-1 rounded-[4px]">Presented</span>
           </div>

@@ -22,7 +22,7 @@ const Media = () => (
       {articles.map((item) => (
         <a key={item.url} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col md:flex-row md:items-center gap-1.5 md:gap-6 p-4 md:p-5 hover:bg-[var(--color-bg-surface)] transition-colors">
           <div className="flex items-center justify-between md:contents">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[var(--color-brand-green)] md:w-32 flex-shrink-0">{item.pub}</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-[var(--color-brand-amber)] md:w-32 flex-shrink-0">{item.pub}</span>
             <ArrowUpRight size={15} className="md:hidden text-[var(--color-text-secondary)] flex-shrink-0" />
           </div>
           <span className="text-sm md:text-[15px] text-white/80 md:text-white group-hover:text-[var(--color-brand-green)] transition-colors flex-1 min-w-0">{item.title}</span>
