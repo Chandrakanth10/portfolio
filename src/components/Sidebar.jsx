@@ -1,5 +1,5 @@
 const Sidebar = ({ navLinks, activeSection, onNavClick }) => (
-  <aside className="hidden md:block w-48 shrink-0 fixed top-32 h-[calc(100vh-8rem)]">
+  <aside className="hidden md:block w-48 shrink-0 fixed top-32 h-[calc(100vh-12rem)] border-r border-[var(--color-border-subtle)] pr-4">
     <div className="space-y-1">
       {navLinks.map((link) => (
         <a
