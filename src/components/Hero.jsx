@@ -15,7 +15,7 @@ const Hero = () => (
         Chandrakanth Puligundla
       </h1>
       <p className="text-xl sm:text-2xl md:text-3xl text-[var(--color-text-secondary)] font-bold tracking-tight mb-6 md:mb-8">
-        Software Engineer at Albertsons
+        Data Engineer at Albertsons
       </p>
 
       <p className="text-base md:text-lg text-[var(--color-text-secondary)] max-w-2xl mb-6 md:mb-8 leading-relaxed">

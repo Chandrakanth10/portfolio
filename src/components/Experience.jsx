@@ -2,7 +2,7 @@ import { ShoppingBag, Cloud, Globe, Code2 } from 'lucide-react';
 
 const jobs = [
   {
-    title: 'Software Engineer',
+    title: 'Data Engineer',
     date: 'Jan 2024 — Present',
     company: 'Albertsons (Contract)',
     companyColor: 'text-[var(--color-brand-green)]',
