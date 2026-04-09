@@ -1,7 +1,7 @@
 const PeerReviews = () => (
-  <section id="reviews" className="mb-12 scroll-mt-12">
+  <section id="reviews" className="mb-8 md:mb-12 scroll-mt-12">
     <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-4">
-      <h2 className="text-3xl font-bold tracking-tight text-white">Peer Reviews</h2>
+      <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Peer Reviews</h2>
       <span className="text-sm text-[var(--color-brand-amber)] mt-2 sm:mt-0">14 papers across 5 venues</span>
     </div>
     <p className="text-[var(--color-text-secondary)] mb-10">Invited reviewer for international journals and conferences.</p>
@@ -9,7 +9,7 @@ const PeerReviews = () => (
     <div className="space-y-4">
       {/* ICLR 2026 — Merged (RSI + AIMS) */}
       <div className="group border border-[var(--color-border-subtle)] rounded-[6px] hover:border-[var(--color-brand-green)] transition-all duration-300 bg-gradient-to-r from-[var(--color-bg-surface)]/40 to-transparent">
-        <div className="p-6 md:p-8 pb-0 md:pb-0">
+        <div className="p-4 sm:p-6 md:p-8 pb-0 sm:pb-0 md:pb-0">
           <div className="flex items-start justify-between gap-4 mb-2">
             <div className="flex items-center gap-3">
               <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">ICLR 2026</span>
@@ -19,7 +19,7 @@ const PeerReviews = () => (
           </div>
         </div>
 
-        <div className="px-6 md:px-8 pt-5">
+        <div className="px-4 sm:px-6 md:px-8 pt-4 sm:pt-5">
           <p className="text-[10px] uppercase font-medium tracking-widest text-[var(--color-text-secondary)]/60 mb-3">Workshop RSI — Resilient & Safe Intelligence</p>
           <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5 mb-5">
             <h3 className="text-base font-semibold text-white mb-1">Vision-Guided Iterative Refinement for Frontend Code Generation</h3>
@@ -27,7 +27,7 @@ const PeerReviews = () => (
           </div>
         </div>
 
-        <div className="px-6 md:px-8 pb-6 md:pb-8">
+        <div className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-6 md:pb-8">
           <p className="text-[10px] uppercase font-medium tracking-widest text-[var(--color-text-secondary)]/60 mb-3">Workshop AIMS — AI for Medicine & Science</p>
           <div className="space-y-4">
             <div className="border-l-2 border-[var(--color-brand-green)]/30 pl-5">
@@ -47,7 +47,7 @@ const PeerReviews = () => (
       </div>
 
       {/* PLOS ONE */}
-      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-4 sm:p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">PLOS ONE</span>
@@ -70,7 +70,7 @@ const PeerReviews = () => (
       </div>
 
       {/* CVAMD 2025 */}
-      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-4 sm:p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">CVAMD 2025</span>
@@ -91,7 +91,7 @@ const PeerReviews = () => (
       </div>
 
       {/* DravidianLangTech 2026 */}
-      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-4 sm:p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">DravidianLangTech 2026</span>
@@ -124,7 +124,7 @@ const PeerReviews = () => (
       </div>
 
       {/* LT-EDI 2026 */}
-      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
+      <div className="group border border-[var(--color-border-subtle)] rounded-[6px] p-4 sm:p-6 md:p-8 hover:border-[var(--color-brand-green)] transition-all duration-300">
         <div className="flex items-start justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
             <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-brand-amber)] bg-[var(--color-brand-amber)]/10 px-2.5 py-1 rounded-[4px]">LT-EDI 2026</span>

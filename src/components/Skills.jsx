@@ -26,12 +26,12 @@ const columns = [
 ];
 
 const Skills = () => (
-  <section id="skills" className="mb-12 scroll-mt-12">
-    <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Skills</h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+  <section id="skills" className="mb-8 md:mb-12 scroll-mt-12">
+    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-8 md:mb-12">Skills</h2>
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-12">
       {columns.map((col) => (
         <div key={col.title}>
-          <h3 className="text-xl font-semibold text-white mb-8">{col.title}</h3>
+          <h3 className="text-lg md:text-xl font-semibold text-white mb-6 md:mb-8">{col.title}</h3>
           <div className="space-y-4">
             {col.items.map((skill) => (
               <div key={skill.name} className="flex items-center gap-3 group cursor-default">

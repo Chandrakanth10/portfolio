@@ -23,7 +23,7 @@ const navLinks = [
   { id: 'skills', label: 'Skills' },
 ];
 
-const Divider = () => <div className="w-full h-px bg-[var(--color-border-subtle)] mb-12" />;
+const Divider = () => <div className="w-full h-px bg-[var(--color-border-subtle)] mb-8 md:mb-12" />;
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -77,7 +77,7 @@ const App = () => {
     <div className="min-h-screen text-[var(--color-text-primary)] font-sans selection:bg-[var(--color-brand-green)] selection:text-black">
       <Navbar navLinks={navLinks} activeSection={activeSection} onNavClick={handleNavClick} />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-28 md:pt-32 pb-12 md:flex md:gap-12 relative">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 pt-24 md:pt-32 pb-8 md:pb-12 md:flex md:gap-12 relative">
         <Sidebar navLinks={navLinks} activeSection={activeSection} onNavClick={handleNavClick} />
 
         <main className="flex-1 md:pl-64">

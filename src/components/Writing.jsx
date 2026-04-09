@@ -22,12 +22,12 @@ const articles = [
 ];
 
 const Writing = () => (
-  <section id="writing" className="mb-12 scroll-mt-12">
-    <h2 className="text-3xl font-bold tracking-tight text-white mb-12">Technical Writing</h2>
-    <div className="relative border-l border-[var(--color-border-subtle)] ml-3 md:ml-6 space-y-6 mb-10">
-      <div className="relative pl-10 md:pl-14">
-        <div className="absolute -left-[24px] top-0 w-12 h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
-          <PenTool className="w-6 h-6 text-[#00FF00]" />
+  <section id="writing" className="mb-8 md:mb-12 scroll-mt-12">
+    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-8 md:mb-12">Technical Writing</h2>
+    <div className="relative border-l border-[var(--color-border-subtle)] ml-4 md:ml-6 space-y-6 mb-10">
+      <div className="relative pl-8 md:pl-14">
+        <div className="absolute -left-[18px] md:-left-[24px] top-0 w-9 h-9 md:w-12 md:h-12 rounded-[6px] border border-[var(--color-border-subtle)] bg-[#1a1a1a] flex items-center justify-center z-10 shadow-lg group-hover:border-[var(--color-brand-green)] transition-colors">
+          <PenTool className="w-4 h-4 md:w-6 md:h-6 text-[#00FF00]" />
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
           <a href="https://hackernoon.com/u/ckp" target="_blank" rel="noopener noreferrer" className="text-xl font-semibold text-white hover:text-[var(--color-brand-green)] transition-colors inline-flex items-center gap-2">
@@ -39,7 +39,7 @@ const Writing = () => (
           {articles.map((article) => (
             <a key={article.url} href={article.url} target="_blank" rel="noopener noreferrer" className="group block cursor-pointer">
               <div className="flex justify-between items-start mb-1">
-                <h4 className="text-lg text-white font-medium group-hover:text-[var(--color-brand-green)] transition-colors">{article.title}</h4>
+                <h4 className="text-base sm:text-lg text-white font-medium group-hover:text-[var(--color-brand-green)] transition-colors">{article.title}</h4>
                 <ExternalLink size={16} className="text-[var(--color-text-secondary)] group-hover:text-white transition-colors" />
               </div>
               <p className="text-[var(--color-text-secondary)] leading-relaxed mb-2">{article.description}</p>

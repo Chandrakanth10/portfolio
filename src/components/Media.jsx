@@ -14,13 +14,13 @@ const articles = [
 ];
 
 const Media = () => (
-  <section id="media" className="mb-12 scroll-mt-12">
-    <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Media Appearances</h2>
+  <section id="media" className="mb-8 md:mb-12 scroll-mt-12">
+    <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4">Media Appearances</h2>
     <p className="text-[var(--color-text-secondary)] mb-10">Quoted and featured in leading technology publications.</p>
 
     <div className="border border-[var(--color-border-subtle)] rounded-[6px] overflow-hidden divide-y divide-[var(--color-border-subtle)]">
       {articles.map((item) => (
-        <a key={item.url} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col md:flex-row md:items-center gap-1.5 md:gap-6 p-4 md:p-5 hover:bg-[var(--color-bg-surface)] transition-colors">
+        <a key={item.url} href={item.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col md:flex-row md:items-center gap-2 md:gap-6 p-3 sm:p-4 md:p-5 hover:bg-[var(--color-bg-surface)] transition-colors">
           <div className="flex items-center justify-between md:contents">
             <span className="text-xs font-semibold uppercase tracking-wider text-[var(--color-brand-amber)] md:w-32 flex-shrink-0">{item.pub}</span>
             <ArrowUpRight size={15} className="md:hidden text-[var(--color-text-secondary)] flex-shrink-0" />
