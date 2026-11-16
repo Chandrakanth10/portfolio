@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npx --yes --before=2026-11-04 --ignore-scripts wrangler@4.157.0 deploy"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
