@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Rows } from './Row.jsx'
 import ContactRow from './ContactRow.jsx'
 import { profile } from '../content/profile.js'
@@ -41,19 +42,41 @@ export function Section({ id, title, lead, loose, children }) {
 
 export default function Shell({ page, children }) {
   const home = page === 'home'
+  const bar = useRef(null)
+  const [pinned, setPinned] = useState(true)
+
+  // The bar stays in view while it takes up no more than a quarter of the window's height.
+  // With very large text or on a very short window it scrolls away, so it cannot cover the
+  // page. index.css uses --bar-height to stop a section reached from a link below the bar.
+  useEffect(() => {
+    const update = () => {
+      const height = bar.current.offsetHeight
+      const fits = height <= window.innerHeight / 4
+      setPinned(fits)
+      document.documentElement.style.setProperty('--bar-height', fits ? `${height}px` : '0px')
+    }
+    const observer = new ResizeObserver(update)
+    observer.observe(bar.current)
+    window.addEventListener('resize', update)
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+
   return (
     <div className="flex min-h-dvh flex-col">
+      {/* The same bar on every page. */}
       <header
-        className={`flex flex-wrap items-baseline gap-x-4 gap-y-2 px-7 pt-[1.4rem] max-[34rem]:px-[1.1rem] max-[34rem]:pt-[1.1rem] ${home ? 'justify-end' : 'justify-between'}`}
+        ref={bar}
+        className={`${pinned ? 'sticky' : ''} top-0 z-10 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-bg px-7 pt-[1.4rem] pb-3 max-[34rem]:px-[1.1rem] max-[34rem]:pt-[1.1rem]`}
       >
-        {!home && (
-          <a
-            href={pageUrl()}
-            className="text-sm font-medium text-fg transition-colors duration-150 hover:text-accent"
-          >
-            {profile.name}
-          </a>
-        )}
+        <a
+          href={pageUrl()}
+          className="text-sm font-medium text-fg transition-colors duration-150 hover:text-accent"
+        >
+          {profile.name}
+        </a>
         <nav aria-label="Pages" className="flex flex-wrap justify-end gap-6 max-[34rem]:gap-[1.1rem]">
           {links.map((link) => {
             const current = link.page === page
@@ -71,12 +94,12 @@ export default function Shell({ page, children }) {
         </nav>
       </header>
       {home ? (
-        <main className={`${column} flex flex-1 flex-col justify-center pt-9 pb-16 max-[34rem]:pt-6 max-[34rem]:pb-10`}>
+        <main className={`${column} flex flex-1 flex-col justify-center pt-6 pb-16 max-[34rem]:pt-3 max-[34rem]:pb-10`}>
           <div className="home">{children}</div>
         </main>
       ) : (
         <>
-          <main className={`${column} pt-9 pb-14 max-[34rem]:pt-6`}>{children}</main>
+          <main className={`${column} pt-6 pb-14 max-[34rem]:pt-3`}>{children}</main>
           <footer className={`${column} pb-16 max-[34rem]:pb-10`}>
             <Rows>
               <ContactRow />
