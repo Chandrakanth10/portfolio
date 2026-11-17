@@ -7,7 +7,7 @@ export default function ContactRow() {
     <Row label="Find me on">
       <div className="flex flex-wrap gap-[.4rem]">
         {profile.contacts.map((contact) => (
-          <Chip key={contact.label} href={contact.href} newTab={contact.newTab}>
+          <Chip key={contact.label} href={contact.href} newTab={contact.newTab} logo={contact.logo}>
             {contact.label}
           </Chip>
         ))}

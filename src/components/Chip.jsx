@@ -1,5 +1,24 @@
+// A chip wraps only when it is wider than its line, as with very large text.
 const base =
-  'inline-block whitespace-nowrap rounded-[3px] border px-[.55rem] pt-[.16rem] pb-[.18rem] text-[13px] leading-[1.45]'
+  'inline-block wrap-anywhere rounded-[.1875rem] border pt-[.16rem] pb-[.18rem] text-[.8125rem] leading-[1.45]'
+
+// A logo tile sits in the left padding, so a chip with one is as tall as one without.
+const padding = (logo) => (logo ? 'relative pl-[calc(1.5rem+.5em)] pr-[.55rem]' : 'px-[.55rem]')
+
+const Logo = ({ logo }) => (
+  <span
+    aria-hidden="true"
+    className="absolute top-1/2 left-[.5rem] flex size-4 -translate-y-1/2 items-center justify-center rounded-[.1875rem]"
+    style={{ backgroundColor: logo.tile }}
+  >
+    <img
+      src={logo.src}
+      alt=""
+      className="object-contain"
+      style={{ width: `${logo.fit * 100}%`, height: `${logo.fit * 100}%` }}
+    />
+  </span>
+)
 
 const look = (current, more) => {
   if (current) {
@@ -21,8 +40,8 @@ export function Tags({ className = '', items }) {
   )
 }
 
-export default function Chip({ href, newTab, current, more, children }) {
-  const className = `${base} ${look(current, more)}`
+export default function Chip({ href, newTab, current, more, logo, children }) {
+  const className = `${base} ${padding(logo)} ${look(current, more)}`
   if (!href) return <span className={className}>{children}</span>
   return (
     <a
@@ -30,6 +49,7 @@ export default function Chip({ href, newTab, current, more, children }) {
       className={`${className} ${linkHover}`}
       {...(newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     >
+      {logo && <Logo logo={logo} />}
       {children}
       {newTab && <span className="sr-only"> (opens in a new tab)</span>}
     </a>

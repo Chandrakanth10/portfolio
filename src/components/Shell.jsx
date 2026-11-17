@@ -4,9 +4,10 @@ import { profile } from '../content/profile.js'
 import { pageUrl } from '../lib/url.js'
 
 const links = [
-  { page: 'work', label: 'Work' },
-  { page: 'research', label: 'Research' },
-  { page: 'media', label: 'Media' },
+  { page: 'home', label: 'Home', href: pageUrl() },
+  { page: 'work', label: 'Work', href: pageUrl('work') },
+  { page: 'research', label: 'Research', href: pageUrl('research') },
+  { page: 'media', label: 'Media', href: pageUrl('media') },
 ]
 
 const column = 'mx-auto w-full max-w-[54rem] px-7 max-[34rem]:px-[1.1rem]'
@@ -48,13 +49,13 @@ export default function Shell({ page, children }) {
             {profile.name}
           </a>
         )}
-        <nav aria-label="Pages" className="flex gap-6 max-[34rem]:gap-[1.1rem]">
+        <nav aria-label="Pages" className="flex flex-wrap justify-end gap-6 max-[34rem]:gap-[1.1rem]">
           {links.map((link) => {
             const current = link.page === page
             return (
               <a
                 key={link.page}
-                href={pageUrl(link.page)}
+                href={link.href}
                 aria-current={current ? 'page' : undefined}
                 className={`text-sm font-medium transition-colors duration-150 hover:text-accent ${current ? 'text-fg' : 'text-muted'}`}
               >

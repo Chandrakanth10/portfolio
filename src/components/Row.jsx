@@ -35,7 +35,7 @@ export function Rows({ variant = 'page', children }) {
 
 // The parts that stack inside an inner-page row's content.
 export function ItemTitle({ children }) {
-  return <h3 className="text-[15px] font-medium text-fg">{children}</h3>
+  return <h3 className="text-[.9375rem] font-medium text-fg">{children}</h3>
 }
 
 export function LineTitle({ children }) {
@@ -47,7 +47,7 @@ export function Body({ className = '', children }) {
 }
 
 export function Detail({ className = '', children }) {
-  return <p className={`text-[13px] text-muted ${className}`}>{children}</p>
+  return <p className={`text-[.8125rem] text-muted ${className}`}>{children}</p>
 }
 
 export function Bullets({ className = '', items }) {

@@ -1,7 +1,12 @@
+import albertsonsLogo from '../assets/logos/albertsons.png'
+import amazonLogo from '../assets/logos/amazon.png'
+import vodafoneLogo from '../assets/logos/vodafone.svg'
+
 export const roles = [
   {
     id: 'albertsons',
     chip: 'Albertsons',
+    logo: { src: albertsonsLogo, tile: '#ffffff', fit: 0.82 },
     current: true,
     onHome: true,
     title: 'Data Engineer',
@@ -16,6 +21,7 @@ export const roles = [
   {
     id: 'amazon',
     chip: 'Amazon',
+    logo: { src: amazonLogo, tile: '#ff6200', fit: 1 },
     onHome: true,
     title: 'SDE Intern',
     date: 'May 2023 — Aug 2023',
@@ -30,6 +36,7 @@ export const roles = [
   {
     id: 'vodafone',
     chip: 'Vodafone',
+    logo: { src: vodafoneLogo, tile: '#ffffff', fit: 0.8 },
     onHome: true,
     title: 'Software Development Engineer',
     date: 'Jul 2021 — Nov 2021',

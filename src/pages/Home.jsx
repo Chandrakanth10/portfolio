@@ -21,8 +21,10 @@ const publications = firstOfEach(press, 'pub')
 const shownPublications = publications.slice(0, 6)
 const morePublications = publications.length - shownPublications.length
 
+// A phrase stays on one line while the intro is at least 19 characters wide (the
+// longest phrase and its comma); with very large text it wraps instead of overflowing.
 const introUnderline =
-  'whitespace-nowrap underline decoration-1 decoration-[color:color-mix(in_oklab,var(--color-muted)_60%,transparent)] underline-offset-[.28em]'
+  '@min-[19ch]:whitespace-nowrap underline decoration-1 decoration-[color:color-mix(in_oklab,var(--color-muted)_60%,transparent)] underline-offset-[.28em]'
 
 const Num = ({ children }) => <span className="text-[.92em] text-accent tabular-nums">{children}</span>
 
@@ -30,7 +32,7 @@ export default function Home() {
   return (
     <Shell page="home">
       <PageTitle>{profile.name}</PageTitle>
-      <p className="mt-[1.1rem] mb-9 max-w-[34rem] text-[15px] leading-[1.65] text-pretty text-soft max-[34rem]:mb-7">
+      <p className="@container mt-[1.1rem] mb-9 max-w-[34rem] text-[.9375rem] leading-[1.65] text-pretty text-soft max-[34rem]:mb-7">
         {profile.intro.map((part) =>
           typeof part === 'string' ? (
             part
@@ -43,13 +45,13 @@ export default function Home() {
       </p>
       <Rows variant="home">
         <Row label="Working at">
-          <Chip href={pageUrl('work', currentRole.id)} current>
+          <Chip href={pageUrl('work', currentRole.id)} current logo={currentRole.logo}>
             {currentRole.chip}
           </Chip>
         </Row>
         <Row label="Before that">
           {pastRoles.map((role) => (
-            <Chip key={role.id} href={pageUrl('work', role.id)}>
+            <Chip key={role.id} href={pageUrl('work', role.id)} logo={role.logo}>
               {role.chip}
             </Chip>
           ))}

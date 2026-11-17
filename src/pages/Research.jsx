@@ -24,8 +24,8 @@ const Authors = ({ names }) => (
 const VenueLabel = ({ venue }) => (
   <span className="grid gap-y-[.15rem]">
     <span className="font-medium text-fg in-target:text-accent">{venue.name}</span>
-    <span className="text-[13px] text-muted">{venue.kind}</span>
-    <span className="text-[13px] text-muted">{paperCount(venuePapers(venue).length)}</span>
+    <span className="text-[.8125rem] text-muted">{venue.kind}</span>
+    <span className="text-[.8125rem] text-muted">{paperCount(venuePapers(venue).length)}</span>
   </span>
 )
 
