@@ -1,0 +1,80 @@
+<!doctype html>
+<!--
+  The picture that sites show when the home's link is shared: public/og.png, 1200 by 630.
+  It repeats the home's intro and some of its chips, so make it again when those change:
+  open this file in a browser window of exactly 1200 by 630 CSS pixels at a pixel ratio
+  of 1, wait for the font, and save a screenshot of the window as public/og.png.
+  This file is not part of the built site.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Share card</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+      }
+      body {
+        display: grid;
+        align-content: center;
+        gap: 31.2px;
+        padding: 0 96px;
+        background: #000000;
+        color: #F2F4F0;
+        font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1 {
+        font-size: 51.6px;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+      p {
+        max-width: 888px;
+        font-size: 33px;
+        line-height: 1.55;
+        color: #C9CEC8;
+      }
+      ul {
+        display: flex;
+        gap: 12px;
+        padding: 12px 0 0;
+        list-style: none;
+        font-size: 21.6px;
+        line-height: 1.45;
+      }
+      li {
+        padding: 3.6px 11.4px 4.3px;
+        border: 2px solid #2A2D2B;
+        border-radius: 4.8px;
+        background: #0E0F0E;
+        color: #E4E7E2;
+        white-space: nowrap;
+      }
+      li:first-child {
+        border-color: color-mix(in oklab, #F3D9A2 40%, #2A2D2B);
+        background: color-mix(in oklab, #F3D9A2 13%, #0E0F0E);
+        color: #F3D9A2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chandrakanth Puligundla</h1>
+    <p>Data engineer in the Bay Area. I build data systems, publish research, and get quoted on AI and cloud.</p>
+    <ul>
+      <li>Albertsons</li>
+      <li>IEEE ISTAS</li>
+      <li>ICLR workshops</li>
+      <li>Fortune</li>
+      <li>VentureBeat</li>
+      <li>CIO</li>
+    </ul>
+  </body>
+</html>

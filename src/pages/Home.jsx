@@ -21,6 +21,9 @@ const publications = firstOfEach(press, 'pub')
 const shownPublications = publications.slice(0, 6)
 const morePublications = publications.length - shownPublications.length
 
+const introUnderline =
+  'whitespace-nowrap underline decoration-1 decoration-[color:color-mix(in_oklab,var(--color-muted)_60%,transparent)] underline-offset-[.28em]'
+
 const Num = ({ children }) => <span className="text-[.92em] text-accent tabular-nums">{children}</span>
 
 export default function Home() {
@@ -28,7 +31,15 @@ export default function Home() {
     <Shell page="home">
       <PageTitle>{profile.name}</PageTitle>
       <p className="mt-[1.1rem] mb-9 max-w-[34rem] text-[15px] leading-[1.65] text-pretty text-soft max-[34rem]:mb-7">
-        {profile.intro}
+        {profile.intro.map((part) =>
+          typeof part === 'string' ? (
+            part
+          ) : (
+            <span key={part.underline} className={introUnderline}>
+              {part.underline}
+            </span>
+          ),
+        )}
       </p>
       <Rows variant="home">
         <Row label="Working at">

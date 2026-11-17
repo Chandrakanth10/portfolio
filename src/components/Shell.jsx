@@ -66,7 +66,7 @@ export default function Shell({ page, children }) {
       </header>
       {home ? (
         <main className={`${column} flex flex-1 flex-col justify-center pt-9 pb-16 max-[34rem]:pt-6 max-[34rem]:pb-10`}>
-          <div>{children}</div>
+          <div className="home">{children}</div>
         </main>
       ) : (
         <>
