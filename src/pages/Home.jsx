@@ -72,7 +72,7 @@ export default function Home() {
         <span className="sr-only">Location: </span>
         {profile.location}
       </p>
-      <ul role="list" className="mt-[1.1rem] mb-9 grid gap-y-[.35rem] pl-3 text-[.9375rem] leading-[1.8] text-soft max-[34rem]:mb-7">
+      <ul role="list" className="mt-[1.1rem] mb-9 grid gap-y-[.35rem] pl-[.9rem] text-[.9375rem] leading-[1.8] text-soft max-[34rem]:mb-7">
         {profile.intro.map((bullet) => (
           <li key={bullet[0].underline} className="grid grid-cols-[1.6em_minmax(0,1fr)]">
             <span aria-hidden="true" className="text-muted">
