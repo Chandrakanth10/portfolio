@@ -53,7 +53,7 @@ h2:target {
   color: var(--color-accent);
 }
 
-/* Home: the name, the intro and each row arrive in turn. The order is set by
+/* Home: the name, the location, the bullets and each row arrive in turn. The order is set by
    position, so a row added to the home needs a line of its own here. */
 @keyframes home-enter {
   from {
@@ -70,11 +70,12 @@ h2:target {
   }
 
   .home > p { --i: 1; }
-  .home > dl > :nth-child(1) { --i: 2; }
-  .home > dl > :nth-child(2) { --i: 3; }
-  .home > dl > :nth-child(3) { --i: 4; }
-  .home > dl > :nth-child(4) { --i: 5; }
-  .home > dl > :nth-child(5) { --i: 6; }
-  .home > dl > :nth-child(6) { --i: 7; }
-  .home > dl > :nth-child(7) { --i: 8; }
+  .home > ul { --i: 2; }
+  .home > dl > :nth-child(1) { --i: 3; }
+  .home > dl > :nth-child(2) { --i: 4; }
+  .home > dl > :nth-child(3) { --i: 5; }
+  .home > dl > :nth-child(4) { --i: 6; }
+  .home > dl > :nth-child(5) { --i: 7; }
+  .home > dl > :nth-child(6) { --i: 8; }
+  .home > dl > :nth-child(7) { --i: 9; }
 }
