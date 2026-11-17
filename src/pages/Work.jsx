@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import Shell, { PageTitle, Section } from '../components/Shell.jsx'
 import { Rows, Row, Bullets } from '../components/Row.jsx'
 import { Tags, Tag, Tile } from '../components/Chip.jsx'
@@ -39,12 +40,139 @@ function Entry({ id, logo, name, tag, title, date, current, children }) {
   )
 }
 
+const sections = { experience: 'Experience', education: 'Education', skills: 'Skills' }
+
+// The outline's lines, in page order: each section, with the jobs under Experience.
+const outline = [
+  { id: 'experience', name: sections.experience },
+  ...roles.map((role) => ({ id: role.id, name: role.company, logo: role.logo })),
+  { id: 'education', name: sections.education },
+  { id: 'skills', name: sections.skills },
+]
+const outlineIds = outline.map((item) => item.id)
+const hashId = () => {
+  const id = location.hash.slice(1)
+  return outlineIds.includes(id) ? id : null
+}
+
+const lineClass =
+  'group flex items-center gap-[.5em] border-l border-chip-border py-[.22rem] transition-colors duration-150 hover:text-fg aria-[current=true]:border-accent aria-[current=true]:text-fg'
+const logoClass =
+  'flex size-4 shrink-0 items-center justify-center overflow-hidden rounded-[.1875rem] opacity-55 transition-opacity duration-150 group-hover:opacity-100 group-aria-[current=true]:opacity-100'
+
+// "On this page", in the left margin of a wide window. The current line is the last
+// section or job whose top has passed a reading line, which moves from under the bar
+// to the window's bottom as the page scrolls, so the last lines are reached at the end.
+// A clicked line, or one named in the address, stays current until the reader scrolls.
+function Outline() {
+  const [current, setCurrent] = useState(() => hashId() ?? 'experience')
+  const hold = useRef(hashId() ? { y: null } : null)
+
+  // After a jump that did not scroll, the hold starts from where the page already is.
+  const settle = () => {
+    if (hold.current?.y === null) hold.current.y = window.scrollY
+  }
+
+  useEffect(() => {
+    const compute = () => {
+      const root = document.documentElement
+      const style = getComputedStyle(root)
+      const rem = parseFloat(style.fontSize)
+      const bar = parseFloat(style.getPropertyValue('--bar-height')) || 0
+      const max = root.scrollHeight - window.innerHeight
+      const p = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0
+      const start = bar + 5 * rem
+      const line = start + (window.innerHeight - start) * p
+      let next = 'experience'
+      for (const id of outlineIds) {
+        const target = document.getElementById(id)
+        if (target && target.getBoundingClientRect().top <= line) next = id
+      }
+      setCurrent(next)
+    }
+    // The first scroll after a jump is the jump itself; the next one is the reader's.
+    const onScroll = () => {
+      if (hold.current) {
+        if (hold.current.y === null) {
+          hold.current.y = window.scrollY
+          return
+        }
+        if (window.scrollY === hold.current.y) return
+        hold.current = null
+      }
+      compute()
+    }
+    const onResize = () => {
+      hold.current = null
+      compute()
+    }
+    // Back and Forward between jumps: the address names the line the page now shows.
+    const onHash = () => {
+      const id = hashId()
+      if (!id) return
+      setCurrent(id)
+      hold.current = { y: window.scrollY }
+    }
+    // A page opened at a line keeps its hold until the browser's own jump has happened.
+    const frame = requestAnimationFrame(() => {
+      if (!hold.current) compute()
+    })
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize)
+    window.addEventListener('hashchange', onHash)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('hashchange', onHash)
+    }
+  }, [])
+
+  const jobCurrent = roles.some((role) => role.id === current)
+
+  // z-1 paints the outline after the column, which then draws exactly as without it;
+  // with z-auto, Chrome composites the positioned parts painted after a sticky box.
+  return (
+    <nav
+      aria-label="On this page"
+      className="sticky top-[calc(var(--bar-height,0px)+2.1rem)] z-1 hidden h-0 min-[88rem]:block"
+    >
+      <div className="absolute top-8 right-[calc(100%+1.75rem)] grid w-32 text-[.8125rem] leading-[1.5]">
+        {outline.map((item) => {
+          const indent = item.logo ? 'pl-7' : 'pl-[.9rem]'
+          const space = item.id === 'education' || item.id === 'skills' ? 'mt-[.55rem]' : ''
+          const colour = item.id === 'experience' && jobCurrent ? 'text-soft' : 'text-muted'
+          return (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              aria-current={item.id === current ? 'true' : undefined}
+              onClick={(event) => {
+                // A click that opens the line in another tab or window moves nothing here.
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+                setCurrent(item.id)
+                hold.current = { y: null }
+                requestAnimationFrame(settle)
+              }}
+              className={`${lineClass} ${indent} ${space} ${colour}`}
+            >
+              {item.logo && <Tile logo={item.logo} className={logoClass} />}
+              {item.name}
+            </a>
+          )
+        })}
+      </div>
+    </nav>
+  )
+}
+
 export default function Work() {
   return (
     <Shell page="work">
       <PageTitle>Work</PageTitle>
+      <Outline />
 
-      <Section id="experience" title="Experience" loose>
+      <Section id="experience" title={sections.experience} loose>
         <ol role="list">
           {roles.map((role) => (
             <Entry
@@ -63,7 +191,7 @@ export default function Work() {
         </ol>
       </Section>
 
-      <Section id="education" title="Education" loose>
+      <Section id="education" title={sections.education} loose>
         <ol role="list">
           {education.map((school) => (
             <Entry
@@ -84,7 +212,7 @@ export default function Work() {
         </ol>
       </Section>
 
-      <Section id="skills" title="Skills" loose>
+      <Section id="skills" title={sections.skills} loose>
         <Rows variant="tight">
           {skills.map((group) => (
             <Row key={group.group} label={group.group}>
