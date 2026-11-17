@@ -1,4 +1,5 @@
 import { createContext, use } from 'react'
+import Rich from './Rich.jsx'
 
 const Variant = createContext('page')
 
@@ -50,15 +51,18 @@ export function Detail({ className = '', children }) {
   return <p className={`text-[.8125rem] text-muted ${className}`}>{children}</p>
 }
 
-export function Bullets({ className = '', items }) {
+// Each item is an array of parts (see Rich.jsx).
+export function Bullets({ items }) {
   return (
-    <ul role="list" className={`grid list-none gap-y-[.2rem] text-sm leading-[1.6] text-soft ${className}`}>
-      {items.map((item) => (
-        <li
-          key={item}
-          className="relative pl-[1.1rem] before:absolute before:left-0 before:text-muted before:content-['\2013']"
-        >
-          {item}
+    <ul role="list" className="mt-[.7rem] grid gap-y-[.3rem] text-sm leading-[1.7] text-soft">
+      {items.map((item, i) => (
+        <li key={i} className="grid grid-cols-[1.5em_minmax(0,1fr)]">
+          <span aria-hidden="true" className="text-muted">
+            –
+          </span>
+          <span className="@container">
+            <Rich parts={item} />
+          </span>
         </li>
       ))}
     </ul>

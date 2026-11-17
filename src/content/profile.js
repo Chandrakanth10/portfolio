@@ -1,27 +1,24 @@
-import albertsonsLogo from '../assets/logos/albertsons.png'
-import bigqueryLogo from '../assets/logos/bigquery.svg'
 import emailLogo from '../assets/logos/email.svg'
 import githubLogo from '../assets/logos/github.svg'
 import linkedinLogo from '../assets/logos/linkedin.png'
-import pythonLogo from '../assets/logos/python.png'
-import snowflakeLogo from '../assets/logos/snowflake.png'
+import { logos } from './logos.js'
 
 export const profile = {
   name: 'Chandrakanth Puligundla',
   authorName: 'C. Puligundla',
   location: 'Bay Area',
-  // The intro as bullets, each in parts: plain text, an underlined phrase, and a name with its logo.
+  // The intro as bullets, each in parts (see Rich.jsx): plain text, an underlined phrase, and a name with its logo.
   intro: [
     [
       { underline: 'Build data systems' },
       ' at ',
-      { name: 'Albertsons', logo: { src: albertsonsLogo, tile: '#ffffff', fit: 0.82 } },
+      { name: 'Albertsons', logo: logos.albertsons },
       ', in ',
-      { name: 'Python', logo: { src: pythonLogo, tile: '#ffffff', fit: 0.8 } },
+      { name: 'Python', logo: logos.python },
       ' on ',
-      { name: 'Snowflake', logo: { src: snowflakeLogo, tile: '#ffffff', fit: 1 } },
+      { name: 'Snowflake', logo: logos.snowflake },
       ' and ',
-      { name: 'BigQuery', logo: { src: bigqueryLogo, tile: '#ffffff', fit: 0.76 } },
+      { name: 'BigQuery', logo: logos.bigquery },
     ],
     [{ underline: 'Publish research' }, ' on LLMs in software engineering'],
     [{ underline: 'Get quoted' }, ' on AI and cloud'],

@@ -1,7 +1,8 @@
-import Shell from '../components/Shell.jsx'
+import Shell, { PageTitle } from '../components/Shell.jsx'
 import { Rows, Row } from '../components/Row.jsx'
 import Chip from '../components/Chip.jsx'
 import ContactRow from '../components/ContactRow.jsx'
+import Rich from '../components/Rich.jsx'
 import { profile } from '../content/profile.js'
 import { roles } from '../content/work.js'
 import { papers, reviewVenues } from '../content/research.js'
@@ -21,39 +22,12 @@ const publications = firstOfEach(press, 'pub')
 const shownPublications = publications.slice(0, 6)
 const morePublications = publications.length - shownPublications.length
 
-// A phrase stays on one line while its bullet's text is at least 18 characters wide
-// (the longest phrase); with very large text it wraps instead of overflowing.
-const introUnderline =
-  '@min-[18ch]:whitespace-nowrap underline decoration-1 decoration-[color:color-mix(in_oklab,var(--color-muted)_60%,transparent)] underline-offset-[.28em]'
-
 const Num = ({ children }) => <span className="text-[.92em] text-accent tabular-nums">{children}</span>
-
-// A name with its logo in a small box. It stays on one line while its bullet's text is
-// at least 15 characters wide (the widest box, Albertsons); below that it may break.
-const Named = ({ name, logo }) => (
-  <span className="@min-[15ch]:whitespace-nowrap wrap-anywhere rounded-[.1875rem] border border-chip-border bg-chip pt-[.04em] pr-[.45em] pb-[.1em] pl-[.4em] text-fg">
-    <span
-      aria-hidden="true"
-      className="mr-[.4em] inline-flex size-[1.05em] items-center justify-center rounded-[.1875rem] align-[-.18em]"
-      style={{ backgroundColor: logo.tile }}
-    >
-      <img
-        src={logo.src}
-        alt=""
-        className="object-contain"
-        style={{ width: `${logo.fit * 100}%`, height: `${logo.fit * 100}%` }}
-      />
-    </span>
-    {name}
-  </span>
-)
 
 export default function Home() {
   return (
     <Shell page="home">
-      <h1 className="text-[1.5rem] leading-[1.25] font-medium tracking-[-.012em] text-balance wrap-break-word text-fg max-[34rem]:text-[1.3rem]">
-        {profile.name}
-      </h1>
+      <PageTitle>{profile.name}</PageTitle>
       <p className="mt-2 flex items-center gap-[.4em] text-[.9375rem] leading-[1.6] text-soft">
         {/* Lucide map-pin, ISC licence */}
         <svg
@@ -79,17 +53,7 @@ export default function Home() {
               –
             </span>
             <span className="@container">
-              {bullet.map((part) => {
-                if (typeof part === 'string') return part
-                if (part.underline) {
-                  return (
-                    <span key={part.underline} className={introUnderline}>
-                      {part.underline}
-                    </span>
-                  )
-                }
-                return <Named key={part.name} {...part} />
-              })}
+              <Rich parts={bullet} />
             </span>
           </li>
         ))}

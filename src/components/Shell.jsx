@@ -13,15 +13,20 @@ const links = [
 const column = 'mx-auto w-full max-w-[54rem] px-7 max-[34rem]:px-[1.1rem]'
 
 export function PageTitle({ children }) {
-  return <h1 className="text-[1.0625rem] leading-normal font-medium text-balance text-fg">{children}</h1>
+  return (
+    <h1 className="text-[1.5rem] leading-[1.25] font-medium tracking-[-.012em] text-balance wrap-break-word text-fg max-[34rem]:text-[1.3rem]">
+      {children}
+    </h1>
+  )
 }
 
 // A section of an inner page: its h2 (which carries the id), an optional line
-// of sentences and links under it, then its rows.
-export function Section({ id, title, lead, children }) {
+// of sentences and links under it, then its rows. A loose section has more space
+// above it and under its h2.
+export function Section({ id, title, lead, loose, children }) {
   return (
-    <section className="mt-11 first-of-type:mt-8">
-      <h2 id={id} className="mb-4 text-sm font-medium text-fg">
+    <section className={`${loose ? 'mt-12' : 'mt-11'} first-of-type:mt-8`}>
+      <h2 id={id} className={`${loose ? 'mb-5' : 'mb-4'} text-sm font-medium text-fg`}>
         {title}
       </h2>
       {lead && (
