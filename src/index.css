@@ -18,10 +18,17 @@
   color-scheme: dark;
 }
 
-/* From the phone breakpoint up, everything is 15% larger: sizes are in rem, so they follow the root. */
+/* Sizes are in rem, so they follow the root: 15% larger from the phone breakpoint up,
+   and 25% larger on windows 80rem wide and up. */
 @media (min-width: 34rem) {
   html {
     font-size: 115%;
+  }
+}
+
+@media (min-width: 80rem) {
+  html {
+    font-size: 125%;
   }
 }
 
