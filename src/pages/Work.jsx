@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import Shell, { PageTitle, Section } from '../components/Shell.jsx'
 import { Rows, Row, Bullets } from '../components/Row.jsx'
 import { Tags, Tag, Tile } from '../components/Chip.jsx'
@@ -56,81 +56,132 @@ const hashId = () => {
 }
 
 const lineClass =
-  'group flex items-center gap-[.5em] border-l border-chip-border py-[.22rem] transition-colors duration-150 hover:text-fg aria-[current=true]:border-accent aria-[current=true]:text-fg'
+  'group flex items-center gap-[.5em] border-l border-chip-border py-[.22rem] transition-colors duration-150 hover:text-fg aria-[current=true]:text-fg'
 const logoClass =
   'flex size-4 shrink-0 items-center justify-center overflow-hidden rounded-[.1875rem] opacity-55 transition-opacity duration-150 group-hover:opacity-100 group-aria-[current=true]:opacity-100'
 
-// "On this page", in the left margin of a wide window. The current line is the last
-// section or job whose top has passed a reading line, which moves from under the bar
-// to the window's bottom as the page scrolls, so the last lines are reached at the end.
-// A clicked line, or one named in the address, stays current until the reader scrolls.
+// The line the scroll position marks. A line becomes the current one when the top of its
+// section or job comes up to a reading line a little under the bar. The page's last ones
+// cannot scroll that high, so each becomes current early enough to leave every line after
+// it some scrolling of its own (`gap`) before the page ends.
+function spot() {
+  const root = document.documentElement
+  const style = getComputedStyle(root)
+  const rem = parseFloat(style.fontSize)
+  const bar = parseFloat(style.getPropertyValue('--bar-height')) || 0
+  const max = root.scrollHeight - window.innerHeight
+  if (max <= 0) return outlineIds[0]
+  const gap = Math.min(2 * rem, max / outlineIds.length)
+  // Going back from the last line, `from` is where the page is when a line becomes current.
+  let from = max
+  for (let i = outlineIds.length - 1; i > 0; i--) {
+    const top = document.getElementById(outlineIds[i]).getBoundingClientRect().top
+    from = Math.min(window.scrollY + top - bar - 4 * rem, from - gap)
+    if (window.scrollY >= from) return outlineIds[i]
+  }
+  return outlineIds[0]
+}
+
+// Whether the page stands where a jump to a line leaves it: the line's top under the bar,
+// or the page's end when it cannot scroll that far.
+function reached(id) {
+  const root = document.documentElement
+  const target = document.getElementById(id)
+  const top =
+    target.getBoundingClientRect().top -
+    parseFloat(getComputedStyle(root).scrollPaddingTop) -
+    parseFloat(getComputedStyle(target).scrollMarginTop)
+  return Math.abs(top) < 2 || (top > 0 && window.scrollY >= root.scrollHeight - window.innerHeight - 2)
+}
+
+// Moves the accent mark onto the current line. While the outline is not shown its lines
+// have no size, and the mark stays as it is.
+function place(box, mark) {
+  const link = box.querySelector('[aria-current]').getBoundingClientRect()
+  if (!link.height) return
+  mark.style.transform = `translateY(${link.top - box.getBoundingClientRect().top}px)`
+  mark.style.height = `${link.height}px`
+}
+
+// "On this page", in the left margin of a wide window.
 function Outline() {
   const [current, setCurrent] = useState(() => hashId() ?? 'experience')
-  const hold = useRef(hashId() ? { y: null } : null)
   // With text enlarged on its own, the margin can be too narrow for the outline; it then
   // hides, so that no link takes keyboard focus where it cannot be seen.
   const links = useRef(null)
+  const mark = useRef(null)
   const [fits, setFits] = useState(true)
 
-  // After a jump that did not scroll, the hold starts from where the page already is.
-  const settle = () => {
-    if (hold.current?.y === null) hold.current.y = window.scrollY
-  }
+  useLayoutEffect(() => place(links.current, mark.current), [current])
 
   useEffect(() => {
-    const compute = () => {
-      const root = document.documentElement
-      const style = getComputedStyle(root)
-      const rem = parseFloat(style.fontSize)
-      const bar = parseFloat(style.getPropertyValue('--bar-height')) || 0
-      const max = root.scrollHeight - window.innerHeight
-      const p = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0
-      const start = bar + 5 * rem
-      const line = start + (window.innerHeight - start) * p
-      let next = 'experience'
-      for (const id of outlineIds) {
-        const target = document.getElementById(id)
-        if (target && target.getBoundingClientRect().top <= line) next = id
-      }
+    // A clicked line, or the one named in the address, is held as the current one: while
+    // the page is on its way there (`seen` is null), and then for as long as the scroll
+    // position marks the line it marked on arrival (`seen`).
+    let held = hashId() ? { id: hashId(), seen: null } : null
+    let timer
+    // The page has arrived once it has stood still for a moment: a glide is many scrolls,
+    // a jump is one, and a line already in place is none. The hold lasts only if the page
+    // did go to the line; after Back, Forward or a reload it can stand somewhere else.
+    const arrive = () => {
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        if (held && reached(held.id)) {
+          held.seen = spot()
+          setCurrent(held.id)
+        } else {
+          held = null
+          setCurrent(spot())
+        }
+      }, 150)
+    }
+    const onScroll = () => {
+      if (held && !held.seen) return arrive()
+      const next = spot()
+      if (held && next === held.seen) return
+      held = null
       setCurrent(next)
     }
-    // The first scroll after a jump is the jump itself; the next one is the reader's.
-    const onScroll = () => {
-      if (hold.current) {
-        if (hold.current.y === null) {
-          hold.current.y = window.scrollY
-          return
-        }
-        if (window.scrollY === hold.current.y) return
-        hold.current = null
-      }
-      compute()
+    const onClick = (event) => {
+      const link = event.target.closest('a')
+      // A click that opens the line in another tab or window moves nothing here.
+      if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      held = { id: link.hash.slice(1), seen: null }
+      setCurrent(held.id)
+      arrive()
     }
-    const measure = () => setFits(links.current.getBoundingClientRect().left >= 0)
-    const onResize = () => {
-      hold.current = null
-      measure()
-      compute()
-    }
-    const observer = new ResizeObserver(measure)
-    observer.observe(links.current)
-    // Back and Forward between jumps: the address names the line the page now shows.
+    // Back and Forward between jumps; the mark waits to see where the page comes to rest.
     const onHash = () => {
       const id = hashId()
       if (!id) return
-      setCurrent(id)
-      hold.current = { y: window.scrollY }
+      held = { id, seen: null }
+      arrive()
     }
-    // A page opened at a line keeps its hold until the browser's own jump has happened.
-    const frame = requestAnimationFrame(() => {
-      if (!hold.current) compute()
-    })
+    const measure = () => {
+      setFits(box.getBoundingClientRect().left >= 0)
+      place(box, mark.current)
+    }
+    const onResize = () => {
+      held = null
+      measure()
+      setCurrent(spot())
+    }
+    const box = links.current
+    const observer = new ResizeObserver(measure)
+    observer.observe(box)
+    // Once the page has loaded: one opened at a line is on its way there, and any other
+    // marks the line where it stands.
+    if (document.readyState === 'complete') arrive()
+    else window.addEventListener('load', arrive, { once: true })
+    box.addEventListener('click', onClick)
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
     window.addEventListener('hashchange', onHash)
     return () => {
-      cancelAnimationFrame(frame)
+      clearTimeout(timer)
       observer.disconnect()
+      window.removeEventListener('load', arrive)
+      box.removeEventListener('click', onClick)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
       window.removeEventListener('hashchange', onHash)
@@ -152,6 +203,11 @@ function Outline() {
         ref={links}
         className={`absolute top-8 right-[calc(100%+5.25rem)] grid w-32 text-[.8125rem] leading-[1.5] ${fits ? '' : 'invisible'}`}
       >
+        <span
+          ref={mark}
+          aria-hidden="true"
+          className="absolute top-0 left-0 border-l border-accent transition-[transform,height] duration-200 ease-out motion-reduce:transition-none"
+        />
         {outline.map((item) => {
           const indent = item.logo ? 'pl-7' : 'pl-[.9rem]'
           const space = item.id === 'education' || item.id === 'skills' ? 'mt-[.55rem]' : ''
@@ -161,13 +217,6 @@ function Outline() {
               key={item.id}
               href={`#${item.id}`}
               aria-current={item.id === current ? 'true' : undefined}
-              onClick={(event) => {
-                // A click that opens the line in another tab or window moves nothing here.
-                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
-                setCurrent(item.id)
-                hold.current = { y: null }
-                requestAnimationFrame(settle)
-              }}
               className={`${lineClass} ${indent} ${space} ${colour}`}
             >
               {item.logo && <Tile logo={item.logo} className={logoClass} />}

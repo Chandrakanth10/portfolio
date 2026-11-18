@@ -38,6 +38,13 @@ html {
   scroll-padding-top: calc(var(--bar-height, 4rem) + 1rem);
 }
 
+/* A jump within a page glides there, unless the reader has asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   min-height: 100dvh;
   background-color: var(--color-bg);
