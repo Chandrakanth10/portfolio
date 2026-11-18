@@ -27,10 +27,10 @@ export function PageTitle({ children }) {
 
 // A section of an inner page: its h2 (which carries the id), an optional line
 // of sentences and links under it, then its rows. A loose section has more space
-// above it and under its h2.
-export function Section({ id, title, lead, loose, children }) {
+// above it and under its h2. `order` is its turn when the page's parts arrive (index.css).
+export function Section({ id, title, lead, loose, order, children }) {
   return (
-    <section className={`${loose ? 'mt-12' : 'mt-11'} first-of-type:mt-8`}>
+    <section className={`${loose ? 'mt-12' : 'mt-11'} first-of-type:mt-8`} style={{ '--i': order }}>
       <h2 id={id} className={`${loose ? 'mb-5' : 'mb-4'} text-sm font-medium text-fg`}>
         {title}
       </h2>
@@ -44,7 +44,7 @@ export function Section({ id, title, lead, loose, children }) {
   )
 }
 
-export default function Shell({ page, narrow, children }) {
+export default function Shell({ page, narrow, enter, children }) {
   const home = page === 'home'
   const inner = narrow ? narrowColumn : ''
   const bar = useRef(null)
@@ -104,7 +104,7 @@ export default function Shell({ page, narrow, children }) {
         </main>
       ) : (
         <>
-          <main className={`${column} ${inner} pt-6 pb-14 max-[34rem]:pt-3`}>{children}</main>
+          <main className={`${column} ${inner} ${enter ? 'enter' : ''} pt-6 pb-14 max-[34rem]:pt-3`}>{children}</main>
           <footer className={`${column} ${inner} pb-16 max-[34rem]:pb-10`}>
             <Rows>
               <ContactRow />

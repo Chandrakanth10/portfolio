@@ -18,9 +18,9 @@ const tileShadow = 'shadow-[0_0_0_.4rem_var(--color-bg)]'
 const currentTileShadow =
   'shadow-[0_0_0_.18rem_var(--color-bg),0_0_0_calc(.18rem+1.5px)_var(--color-accent),0_0_0_.45rem_var(--color-bg)]'
 
-function Entry({ id, logo, name, tag, title, date, current, children }) {
+function Entry({ id, logo, name, tag, title, date, current, order, children }) {
   return (
-    <li id={id} className={entryClass}>
+    <li id={id} className={entryClass} style={{ '--i': order }}>
       <Tile logo={logo} className={`${tileClass} ${current ? currentTileShadow : tileShadow}`} />
       <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-[.1rem]">
         <div>
@@ -41,6 +41,18 @@ function Entry({ id, logo, name, tag, title, date, current, children }) {
 }
 
 const sections = { experience: 'Experience', education: 'Education', skills: 'Skills' }
+
+// Opened at its top, the page's parts arrive in turn (index.css): the title, then each
+// heading and entry in the order below. Opened at a line, everything is in place at once,
+// so that the browser's jump there measures the page as it will stand.
+const enter = !location.hash
+const order = {
+  experience: 1,
+  roles: 2,
+  education: 2 + roles.length,
+  schools: 3 + roles.length,
+  skills: 3 + roles.length + education.length,
+}
 
 // The outline's lines, in page order: each section, with the jobs under Experience.
 const outline = [
@@ -231,15 +243,16 @@ function Outline() {
 
 export default function Work() {
   return (
-    <Shell page="work" narrow>
+    <Shell page="work" narrow enter={enter}>
       <PageTitle>Work</PageTitle>
       <Outline />
 
-      <Section id="experience" title={sections.experience} loose>
+      <Section id="experience" title={sections.experience} loose order={order.experience}>
         <ol role="list">
-          {roles.map((role) => (
+          {roles.map((role, i) => (
             <Entry
               key={role.id}
+              order={order.roles + i}
               id={role.id}
               logo={role.logo}
               name={role.company}
@@ -254,11 +267,12 @@ export default function Work() {
         </ol>
       </Section>
 
-      <Section id="education" title={sections.education} loose>
+      <Section id="education" title={sections.education} loose order={order.education}>
         <ol role="list">
-          {education.map((school) => (
+          {education.map((school, i) => (
             <Entry
               key={school.id}
+              order={order.schools + i}
               id={school.id}
               logo={school.logo}
               name={school.school}
@@ -275,7 +289,7 @@ export default function Work() {
         </ol>
       </Section>
 
-      <Section id="skills" title={sections.skills} loose>
+      <Section id="skills" title={sections.skills} loose order={order.skills}>
         <Rows variant="tight">
           {skills.map((group) => (
             <Row key={group.group} label={group.group}>
