@@ -28,7 +28,7 @@ function Entry({ id, logo, name, tag, title, date, current, children }) {
             <h3 className="text-base font-medium text-fg group-target:text-accent">{name}</h3>
             {tag && <Tag>{tag}</Tag>}
           </div>
-          <p className="text-sm leading-[1.6] text-soft">{title}</p>
+          <p className="text-[.8125rem] leading-[1.6] text-soft max-[34rem]:text-sm">{title}</p>
         </div>
         <p className="flex flex-wrap items-center gap-x-[.6rem] gap-y-[.3rem] pt-[.15rem] text-[.8125rem] leading-[1.6] whitespace-nowrap text-muted max-[34rem]:basis-full max-[34rem]:pt-0 max-[34rem]:whitespace-normal">
           <span>{date}</span>
@@ -67,6 +67,10 @@ const logoClass =
 function Outline() {
   const [current, setCurrent] = useState(() => hashId() ?? 'experience')
   const hold = useRef(hashId() ? { y: null } : null)
+  // With text enlarged on its own, the margin can be too narrow for the outline; it then
+  // hides, so that no link takes keyboard focus where it cannot be seen.
+  const links = useRef(null)
+  const [fits, setFits] = useState(true)
 
   // After a jump that did not scroll, the hold starts from where the page already is.
   const settle = () => {
@@ -102,10 +106,14 @@ function Outline() {
       }
       compute()
     }
+    const measure = () => setFits(links.current.getBoundingClientRect().left >= 0)
     const onResize = () => {
       hold.current = null
+      measure()
       compute()
     }
+    const observer = new ResizeObserver(measure)
+    observer.observe(links.current)
     // Back and Forward between jumps: the address names the line the page now shows.
     const onHash = () => {
       const id = hashId()
@@ -122,6 +130,7 @@ function Outline() {
     window.addEventListener('hashchange', onHash)
     return () => {
       cancelAnimationFrame(frame)
+      observer.disconnect()
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
       window.removeEventListener('hashchange', onHash)
@@ -132,12 +141,17 @@ function Outline() {
 
   // z-1 paints the outline after the column, which then draws exactly as without it;
   // with z-auto, Chrome composites the positioned parts painted after a sticky box.
+  // The outline keeps its place in the margin: its offset from the column is the 1.75rem
+  // gap plus the 3.5rem that Shell's narrow column moves right.
   return (
     <nav
       aria-label="On this page"
       className="sticky top-[calc(var(--bar-height,0px)+2.1rem)] z-1 hidden h-0 min-[88rem]:block"
     >
-      <div className="absolute top-8 right-[calc(100%+1.75rem)] grid w-32 text-[.8125rem] leading-[1.5]">
+      <div
+        ref={links}
+        className={`absolute top-8 right-[calc(100%+5.25rem)] grid w-32 text-[.8125rem] leading-[1.5] ${fits ? '' : 'invisible'}`}
+      >
         {outline.map((item) => {
           const indent = item.logo ? 'pl-7' : 'pl-[.9rem]'
           const space = item.id === 'education' || item.id === 'skills' ? 'mt-[.55rem]' : ''
@@ -168,7 +182,7 @@ function Outline() {
 
 export default function Work() {
   return (
-    <Shell page="work">
+    <Shell page="work" narrow>
       <PageTitle>Work</PageTitle>
       <Outline />
 
@@ -203,7 +217,7 @@ export default function Work() {
               date={school.date}
             >
               {school.notes.map((note, i) => (
-                <p key={i} className="mt-2 text-sm leading-[1.7] text-soft">
+                <p key={i} className="mt-2 text-[.8125rem] leading-[1.7] text-soft max-[34rem]:text-sm">
                   <Rich parts={note} />
                 </p>
               ))}

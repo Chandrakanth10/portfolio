@@ -12,6 +12,10 @@ const links = [
 ]
 
 const column = 'mx-auto w-full max-w-[54rem] px-7 max-[34rem]:px-[1.1rem]'
+// For a page with an outline in its left margin: a narrower column. Where the outline
+// shows (from 88rem wide) it moves right, away from the outline, and sits in the middle;
+// on smaller windows it keeps the left edge the other pages have.
+const narrowColumn = '*:max-w-[43.5rem] min-[88rem]:*:ml-14'
 
 export function PageTitle({ children }) {
   return (
@@ -40,8 +44,9 @@ export function Section({ id, title, lead, loose, children }) {
   )
 }
 
-export default function Shell({ page, children }) {
+export default function Shell({ page, narrow, children }) {
   const home = page === 'home'
+  const inner = narrow ? narrowColumn : ''
   const bar = useRef(null)
   const [pinned, setPinned] = useState(true)
 
@@ -99,8 +104,8 @@ export default function Shell({ page, children }) {
         </main>
       ) : (
         <>
-          <main className={`${column} pt-6 pb-14 max-[34rem]:pt-3`}>{children}</main>
-          <footer className={`${column} pb-16 max-[34rem]:pb-10`}>
+          <main className={`${column} ${inner} pt-6 pb-14 max-[34rem]:pt-3`}>{children}</main>
+          <footer className={`${column} ${inner} pb-16 max-[34rem]:pb-10`}>
             <Rows>
               <ContactRow />
             </Rows>

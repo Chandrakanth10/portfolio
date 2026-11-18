@@ -54,7 +54,7 @@ export function Detail({ className = '', children }) {
 // Each item is an array of parts (see Rich.jsx).
 export function Bullets({ items }) {
   return (
-    <ul role="list" className="mt-[.7rem] grid gap-y-[.3rem] text-sm leading-[1.7] text-soft">
+    <ul role="list" className="mt-[.7rem] grid gap-y-[.3rem] text-[.8125rem] leading-[1.7] text-soft max-[34rem]:text-sm">
       {items.map((item, i) => (
         <li key={i} className="grid grid-cols-[1.5em_minmax(0,1fr)]">
           <span aria-hidden="true" className="text-muted">
