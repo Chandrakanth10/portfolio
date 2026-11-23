@@ -17,6 +17,7 @@ export default defineConfig({
         home: entry('./index.html'),
         work: entry('./work/index.html'),
         research: entry('./research/index.html'),
+        reviews: entry('./reviews/index.html'),
         media: entry('./media/index.html'),
       },
     },

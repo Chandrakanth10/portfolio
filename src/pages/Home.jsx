@@ -80,7 +80,7 @@ export default function Home() {
         </Row>
         <Row label={<><Num>{reviewCount}</Num> reviews for</>}>
           {reviewVenues.map((venue) => (
-            <Chip key={venue.id} href={pageUrl('research', venue.id)}>
+            <Chip key={venue.id} href={pageUrl('reviews', venue.id)}>
               {venue.chip}
             </Chip>
           ))}

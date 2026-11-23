@@ -8,6 +8,7 @@ const links = [
   { page: 'home', label: 'Home', href: pageUrl() },
   { page: 'work', label: 'Work', href: pageUrl('work') },
   { page: 'research', label: 'Research', href: pageUrl('research') },
+  { page: 'reviews', label: 'Reviews', href: pageUrl('reviews') },
   { page: 'media', label: 'Media', href: pageUrl('media') },
 ]
 
@@ -82,7 +83,8 @@ export default function Shell({ page, narrow, enter, children }) {
         >
           {profile.name}
         </a>
-        <nav aria-label="Pages" className="flex flex-wrap justify-end gap-6 max-[34rem]:gap-[1.1rem]">
+        {/* Below 22rem the gaps narrow so that all five tabs still fit on one line at 320px. */}
+        <nav aria-label="Pages" className="flex flex-wrap justify-end gap-6 max-[34rem]:gap-[1.1rem] max-[22rem]:gap-[.7rem]">
           {links.map((link) => {
             const current = link.page === page
             return (
