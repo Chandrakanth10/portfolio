@@ -13,9 +13,9 @@ const links = [
 
 const column = 'mx-auto w-full max-w-[54rem] px-7 max-[34rem]:px-[1.1rem]'
 // For a page with an outline in its left margin: a narrower column. Where the outline
-// shows (from 88rem wide) it moves right, away from the outline, and sits in the middle;
-// on smaller windows it keeps the left edge the other pages have.
-const narrowColumn = '*:max-w-[43.5rem] min-[88rem]:*:ml-14'
+// shows (from 88rem wide) it moves right, away from the outline, to a little past the
+// middle; on smaller windows it keeps the left edge the other pages have.
+const narrowColumn = '*:max-w-[43.5rem] min-[88rem]:*:ml-22'
 
 export function PageTitle({ children }) {
   return (

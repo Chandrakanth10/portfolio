@@ -205,7 +205,7 @@ function Outline() {
   // z-1 paints the outline after the column, which then draws exactly as without it;
   // with z-auto, Chrome composites the positioned parts painted after a sticky box.
   // The outline keeps its place in the margin: its offset from the column is the 1.75rem
-  // gap plus the 3.5rem that Shell's narrow column moves right.
+  // gap plus the 5.5rem that Shell's narrow column moves right.
   return (
     <nav
       aria-label="On this page"
@@ -213,7 +213,7 @@ function Outline() {
     >
       <div
         ref={links}
-        className={`absolute top-8 right-[calc(100%+5.25rem)] grid w-32 text-[.8125rem] leading-[1.5] ${fits ? '' : 'invisible'}`}
+        className={`absolute top-8 right-[calc(100%+7.25rem)] grid w-32 text-[.8125rem] leading-[1.5] ${fits ? '' : 'invisible'}`}
       >
         <span
           ref={mark}
