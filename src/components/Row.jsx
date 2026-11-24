@@ -72,7 +72,7 @@ export function Bullets({ items }) {
 export function Row({ id, label, children }) {
   const kind = use(Variant) === 'home' ? 'home' : 'page'
   return (
-    <div id={id} className={`${rowClass[kind]} [&:target>dt]:text-accent`}>
+    <div id={id} className={`group ${rowClass[kind]} [&:target>dt]:text-accent`}>
       <dt className={dtClass[kind]}>{label}</dt>
       <dd className={ddClass[kind]}>{children}</dd>
     </div>

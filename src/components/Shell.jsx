@@ -29,14 +29,17 @@ export function PageTitle({ children }) {
 // A section of an inner page: its h2 (which carries the id), an optional line
 // of sentences and links under it, then its rows. A loose section has more space
 // above it and under its h2. `order` is its turn when the page's parts arrive (index.css).
-export function Section({ id, title, lead, loose, order, children }) {
+// With `hideTitle` the h2 is kept for screen readers only, and the lead sits close
+// under the page title, as a page's only section.
+export function Section({ id, title, hideTitle, lead, loose, order, children }) {
+  const space = hideTitle ? 'mt-3' : `${loose ? 'mt-12' : 'mt-11'} first-of-type:mt-8`
   return (
-    <section className={`${loose ? 'mt-12' : 'mt-11'} first-of-type:mt-8`} style={{ '--i': order }}>
-      <h2 id={id} className={`${loose ? 'mb-5' : 'mb-4'} text-sm font-medium text-fg`}>
+    <section className={space} style={{ '--i': order }}>
+      <h2 id={id} className={hideTitle ? 'sr-only' : `${loose ? 'mb-5' : 'mb-4'} text-sm font-medium text-fg`}>
         {title}
       </h2>
       {lead && (
-        <div className="mb-5 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm leading-[1.6] text-soft">
+        <div className={`${hideTitle ? 'mb-9' : 'mb-5'} flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm leading-[1.6] text-soft`}>
           {lead}
         </div>
       )}

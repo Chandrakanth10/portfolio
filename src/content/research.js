@@ -12,8 +12,8 @@ export const papers = [
     title: 'Bridging Quantum and Classical AI: Cloud-Based Quantum Computing for Machine Learning',
     description: 'Explores the integration of quantum computing with classical AI through cloud-based architectures for machine learning applications.',
     logo: logos.ieee,
-    sole: true,
     topics: ['Quantum computing', 'Cloud', 'Machine learning'],
+    authors: ['C. Puligundla']
   },
   {
     id: 'icccnt-2025',
@@ -22,9 +22,8 @@ export const papers = [
     title: 'Scalable Intelligence: A Survey on Deploying AI Models in Distributed Cloud Platforms',
     description: 'Surveys scalable deployment strategies for AI models across distributed cloud platforms, examining orchestration, resource optimization, and inference at scale.',
     logo: logos.ieee,
-    sole: true,
-    presented: true,
     topics: ['Cloud', 'Distributed systems', 'Model serving'],
+    authors: ['C. Puligundla']
   },
   {
     id: 'aibthings-2025-spx',
