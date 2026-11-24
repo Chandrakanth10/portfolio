@@ -26,11 +26,11 @@ const Logo = ({ logo }) => (
   />
 )
 
-const accent =
+const accentLook =
   'border-[color-mix(in_oklab,var(--color-accent)_40%,var(--color-chip-border))] bg-[color-mix(in_oklab,var(--color-accent)_13%,var(--color-chip))] text-accent'
 
 const look = (current, more) => {
-  if (current) return accent
+  if (current) return accentLook
   if (more) return 'border-dashed border-chip-border bg-transparent text-muted'
   return 'border-chip-border bg-chip text-chip-fg'
 }
@@ -38,10 +38,10 @@ const look = (current, more) => {
 const linkHover = 'transition-colors duration-150 hover:border-accent hover:text-fg'
 
 // A small label beside a name or a date, such as Contract or Now.
-export function Tag({ now, children }) {
+export function Tag({ accent, children }) {
   return (
     <span
-      className={`rounded-[.1875rem] border px-[.4rem] pt-[.02rem] pb-[.06rem] text-[.6875rem] leading-[1.45] tracking-[.05em] uppercase ${now ? accent : 'border-chip-border text-muted'}`}
+      className={`rounded-[.1875rem] border px-[.4rem] pt-[.02rem] pb-[.06rem] text-[.6875rem] leading-[1.45] tracking-[.05em] uppercase ${accent ? accentLook : 'border-chip-border text-muted'}`}
     >
       {children}
     </span>

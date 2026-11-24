@@ -3,6 +3,7 @@ import amazon from '../assets/logos/amazon.png'
 import asu from '../assets/logos/asu.png'
 import bigquery from '../assets/logos/bigquery.svg'
 import git from '../assets/logos/git.svg'
+import ieee from '../assets/logos/ieee.svg'
 import java from '../assets/logos/java.svg'
 import lmkinfotech from '../assets/logos/lmkinfotech.png'
 import python from '../assets/logos/python.png'
@@ -23,4 +24,5 @@ export const logos = {
   java: { src: java, tile: '#ffffff', fit: 0.82 },
   spring: { src: spring, tile: '#ffffff', fit: 0.74 },
   git: { src: git, tile: '#ffffff', fit: 0.74 },
+  ieee: { src: ieee, tile: '#00629b', fit: 0.88 },
 }

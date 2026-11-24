@@ -1,3 +1,5 @@
+import { logos } from './logos.js';
+
 export const xploreUrl = 'https://ieeexplore.ieee.org/author/659163992295229';
 
 export const papersNote = 'peer-reviewed IEEE conference papers in 2025.';
@@ -9,7 +11,9 @@ export const papers = [
     chip: 'IEEE ISTAS',
     title: 'Bridging Quantum and Classical AI: Cloud-Based Quantum Computing for Machine Learning',
     description: 'Explores the integration of quantum computing with classical AI through cloud-based architectures for machine learning applications.',
-    tags: ['Sole Author']
+    logo: logos.ieee,
+    sole: true,
+    topics: ['Quantum computing', 'Cloud', 'Machine learning'],
   },
   {
     id: 'icccnt-2025',
@@ -17,7 +21,10 @@ export const papers = [
     chip: 'IEEE ICCCNT',
     title: 'Scalable Intelligence: A Survey on Deploying AI Models in Distributed Cloud Platforms',
     description: 'Surveys scalable deployment strategies for AI models across distributed cloud platforms, examining orchestration, resource optimization, and inference at scale.',
-    tags: ['Sole Author', 'Presented']
+    logo: logos.ieee,
+    sole: true,
+    presented: true,
+    topics: ['Cloud', 'Distributed systems', 'Model serving'],
   },
   {
     id: 'aibthings-2025-spx',
@@ -25,7 +32,8 @@ export const papers = [
     chip: 'IEEE AIBThings',
     title: 'SPX: A Novel LLM-Based Framework for Explaining and Estimating User Story Points',
     description: 'Presents a novel LLM-based framework for automated story point estimation and explanation in agile development.',
-    tags: [],
+    logo: logos.ieee,
+    topics: ['LLMs', 'Agile', 'Effort estimation'],
     authors: ['A. Jadhav', 'C. Puligundla', 'S. R. Chigurupati', 'P. Jalan', 'S. Bhogavalli']
   },
   {
@@ -34,7 +42,8 @@ export const papers = [
     chip: 'IEEE AIBThings',
     title: 'Integrating LLMs for Automated Bug Triaging and Root Cause Localization in Software Systems',
     description: 'Proposes an LLM-based approach for automated bug triaging and root cause localization in large-scale software systems.',
-    tags: [],
+    logo: logos.ieee,
+    topics: ['LLMs', 'Bug triage', 'Root cause analysis'],
     authors: ['P. Pisal', 'P. Jalan', 'S. R. Chigurupati', 'C. Puligundla', 'S. Bhogavalli']
   }
 ];
