@@ -23,16 +23,39 @@ const holding = `<!doctype html>
 </body>
 </html>`
 
+// Every address is HTTPS only: a plain HTTP request is sent to the same address over HTTPS,
+// and every answer tells the browser to use HTTPS for the next year without asking again.
+// Browsers keep that for the year even if this Worker is rolled back; withdrawing it means
+// serving max-age=0 over HTTPS. Any future subdomain of theckp.com must have HTTPS too.
+const hsts = 'max-age=31536000; includeSubDomains'
+
 export default {
-  fetch(request, env) {
+  async fetch(request, env) {
+    const url = new URL(request.url)
+    if (url.protocol === 'http:') {
+      // An HTTP-only port such as 8080 has no HTTPS twin, so the redirect drops it.
+      url.protocol = 'https:'
+      url.port = ''
+      return Response.redirect(url.href, 301)
+    }
+
     const launch = Date.parse(env.LAUNCH_AT)
-    const held = heldHosts.has(new URL(request.url).hostname) && !(Date.now() >= launch)
+    const held = heldHosts.has(url.hostname) && !(Date.now() >= launch)
     if (held) {
       return new Response(holding, {
         status: 503,
-        headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'retry-after': '3600' },
+        headers: {
+          'content-type': 'text/html; charset=utf-8',
+          'cache-control': 'no-store',
+          'retry-after': '3600',
+          'strict-transport-security': hsts,
+        },
       })
     }
-    return env.ASSETS.fetch(request)
+    // The asset's own headers can't be changed, so the answer is copied to add one.
+    const asset = await env.ASSETS.fetch(request)
+    const response = new Response(asset.body, asset)
+    response.headers.set('strict-transport-security', hsts)
+    return response
   },
 }
