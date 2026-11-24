@@ -1,6 +1,4 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
-import { Rows } from './Row.jsx'
-import ContactRow from './ContactRow.jsx'
 import { profile } from '../content/profile.js'
 import { pageUrl } from '../lib/url.js'
 
@@ -118,14 +116,9 @@ export default function Shell({ page, narrow, enter, children }) {
           <div className="home">{children}</div>
         </main>
       ) : (
-        <>
-          <main className={`${column} ${inner} ${enter ? 'enter' : ''} pt-6 pb-14 max-[34rem]:pt-5`}>{children}</main>
-          <footer className={`${column} ${inner} pb-16 max-[34rem]:pb-10`}>
-            <Rows>
-              <ContactRow />
-            </Rows>
-          </footer>
-        </>
+        <main className={`${column} ${inner} ${enter ? 'enter' : ''} pt-6 pb-16 max-[34rem]:pt-5 max-[34rem]:pb-10`}>
+          {children}
+        </main>
       )}
     </div>
   )
