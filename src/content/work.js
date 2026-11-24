@@ -109,6 +109,13 @@ export const education = [
       ['GPA: ', { fig: '4.0/4.0' }, ' (Distinction).'],
       ['Focused on Distributed Systems and Software Engineering.']
     ]
+  },
+  {
+    id: 'vit',
+    degree: 'Bachelor of Technology, Electronics and Communication Engineering',
+    school: 'Vellore Institute of Technology',
+    date: '2017 – 2021',
+    notes: []
   }
 ];
 

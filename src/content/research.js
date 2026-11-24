@@ -1,6 +1,12 @@
 import { logos } from './logos.js';
 
-export const xploreUrl = 'https://ieeexplore.ieee.org/author/659163992295229';
+export const researchProfiles = [
+  { name: 'IEEE Xplore', url: 'https://ieeexplore.ieee.org/author/659163992295229' },
+  { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=09EhW6IAAAAJ' },
+  { name: 'ORCID', url: 'https://orcid.org/0009-0001-8560-2443' },
+  { name: 'OpenReview', url: 'https://openreview.net/profile?id=~Chandrakanth_Puligundla1' },
+  { name: 'DBLP', url: 'https://dblp.org/pid/450/7171' }
+];
 
 export const papersNote = 'peer-reviewed IEEE conference papers';
 
@@ -117,7 +123,7 @@ export const reviewVenues = [
     name: 'PLOS ONE',
     chip: 'PLOS ONE',
     kind: 'Journal',
-    groups: [{ papers: 2 }]
+    groups: [{ papers: 2, reports: 4 }]
   },
   {
     id: 'cvamd-2025',
@@ -156,6 +162,7 @@ export const reviewVenues = [
 const reviewGroups = reviewVenues.flatMap((venue) => venue.groups);
 
 export const reviewCount = reviewGroups.reduce((count, group) => count + group.papers, 0);
+export const reportCount = reviewGroups.reduce((count, group) => count + (group.reports ?? group.papers), 0);
 
 // Each workshop group is a venue of its own, so ICLR's two workshops make two.
 export const reviewVenueCount = reviewGroups.length;

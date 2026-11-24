@@ -17,7 +17,13 @@ const currentTileShadow =
 export default function TimelineEntry({ id, logo, current, order, children }) {
   return (
     <li id={id} className={entryClass} style={{ '--i': order }}>
-      <Tile logo={logo} className={`${tileClass} ${current ? currentTileShadow : tileShadow}`} />
+      {logo ? (
+        <Tile logo={logo} className={`${tileClass} ${current ? currentTileShadow : tileShadow}`} />
+      ) : (
+        <span aria-hidden="true" className={`${tileClass} ${tileShadow} bg-bg`}>
+          <span className="size-2 rounded-full bg-muted" />
+        </span>
+      )}
       {children}
     </li>
   )

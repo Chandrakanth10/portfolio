@@ -1,7 +1,7 @@
 import Shell, { PageTitle, Section } from '../components/Shell.jsx'
 import { Rows, Row, Detail, DashList } from '../components/Row.jsx'
 import Chip, { LogoName } from '../components/Chip.jsx'
-import { reviewsNote, reviewVenues, reviewCount, reviewVenueCount } from '../content/research.js'
+import { reviewsNote, reviewVenues, reviewCount, reportCount, reviewVenueCount } from '../content/research.js'
 // Empty on the live site; the titles show only on `npm run dev` (vite.config.js).
 import reviewTitles from 'review-titles'
 
@@ -35,7 +35,7 @@ export default function Reviews() {
         lead={
           <>
             <Chip>
-              {reviewCount} papers across {reviewVenueCount} venues
+              {reportCount} review reports on {reviewCount} papers across {reviewVenueCount} venues
             </Chip>
             <p>{reviewsNote}</p>
           </>
@@ -47,7 +47,9 @@ export default function Reviews() {
               {venue.groups.map((group, g) => (
                 <div key={group.name ?? g} className="mt-4 first:mt-0">
                   {group.name && <Detail className="mb-[.15rem]">{group.name}</Detail>}
-                  <p className="text-sm text-soft">{plural(group.papers)}</p>
+                  <p className="text-sm text-soft">
+                    {plural(group.papers)}{group.reports && ` · ${group.reports} review reports`}
+                  </p>
                   {reviewTitles[venue.id]?.[g] && (
                     <DashList
                       className="mt-[.35rem]"

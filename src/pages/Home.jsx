@@ -5,7 +5,7 @@ import ContactRow from '../components/ContactRow.jsx'
 import Rich from '../components/Rich.jsx'
 import { profile } from '../content/profile.js'
 import { roles } from '../content/work.js'
-import { papers, reviewVenues, reviewCount } from '../content/research.js'
+import { papers, reviewVenues, reportCount } from '../content/research.js'
 import { publications, writing } from '../content/media.js'
 import { pageUrl } from '../lib/url.js'
 
@@ -74,7 +74,7 @@ export default function Home() {
             </Chip>
           ))}
         </Row>
-        <Row label={<><Num>{reviewCount}</Num> reviews for</>}>
+        <Row label={<><Num>{reportCount}</Num> reviews for</>}>
           {reviewVenues.map((venue) => (
             <Chip key={venue.id} href={pageUrl('reviews', venue.id)}>
               {venue.chip}

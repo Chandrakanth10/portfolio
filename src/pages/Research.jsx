@@ -3,7 +3,7 @@ import { Rows, Row, ItemTitle, Body, Detail } from '../components/Row.jsx'
 import Chip, { Tags, LogoName } from '../components/Chip.jsx'
 import ExternalLink from '../components/ExternalLink.jsx'
 import { profile } from '../content/profile.js'
-import { xploreUrl, papersNote, papers } from '../content/research.js'
+import { researchProfiles, papersNote, papers } from '../content/research.js'
 
 // A page opened at a paper goes straight there, with no entrance.
 const enter = !location.hash
@@ -40,7 +40,9 @@ export default function Research() {
             <Chip>
               {papers.length} {papersNote}
             </Chip>
-            <ExternalLink href={xploreUrl}>IEEE Xplore Profile</ExternalLink>
+            {researchProfiles.map(({ name, url }) => (
+              <ExternalLink key={url} href={url}>{name}</ExternalLink>
+            ))}
           </>
         }
       >
