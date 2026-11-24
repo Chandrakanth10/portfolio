@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Rows } from './Row.jsx'
 import ContactRow from './ContactRow.jsx'
 import { profile } from '../content/profile.js'
@@ -83,19 +83,29 @@ export default function Shell({ page, narrow, enter, children }) {
         >
           {profile.name}
         </a>
-        {/* Below 22rem the gaps narrow so that all five tabs still fit on one line at 320px. */}
-        <nav aria-label="Pages" className="flex flex-wrap justify-end gap-6 max-[34rem]:gap-[1.1rem] max-[22rem]:gap-[.7rem]">
-          {links.map((link) => {
+        {/* A dot sits between tabs. Below 22rem the dots go and the gaps narrow, so all five
+            tabs still fit on one line at 320px. */}
+        <nav
+          aria-label="Pages"
+          className="flex flex-wrap items-baseline justify-end gap-x-[.6rem] gap-y-6 max-[34rem]:gap-x-[.35rem] max-[34rem]:gap-y-[1.1rem] max-[22rem]:gap-[.7rem]"
+        >
+          {links.map((link, i) => {
             const current = link.page === page
             return (
-              <a
-                key={link.page}
-                href={link.href}
-                aria-current={current ? 'page' : undefined}
-                className={`text-sm font-medium transition-colors duration-150 hover:text-accent ${current ? 'text-fg' : 'text-muted'}`}
-              >
-                {link.label}
-              </a>
+              <Fragment key={link.page}>
+                {i > 0 && (
+                  <span aria-hidden="true" className="text-sm text-muted/50 max-[22rem]:hidden">
+                    ·
+                  </span>
+                )}
+                <a
+                  href={link.href}
+                  aria-current={current ? 'page' : undefined}
+                  className={`text-sm font-medium transition-colors duration-150 hover:text-accent ${current ? 'text-fg' : 'text-muted'}`}
+                >
+                  {link.label}
+                </a>
+              </Fragment>
             )
           })}
         </nav>
