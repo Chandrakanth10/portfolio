@@ -17,6 +17,8 @@ export const roles = [
     title: 'Data Engineer – MLOps',
     date: 'Jul 2026 — Present',
     company: 'Walmart Global Tech',
+    // The Work page's outline is narrow; there the name is shortened.
+    short: 'Walmart',
     bullets: [
       ['Accelerated data processing by orchestrating ', { fig: '5+' }, ' DAGs to use GPUs, cutting compute time by ', { fig: '30%' }, '.'],
       ['Identified data migration gaps through cross-source analysis of data spanning ', { fig: '85M+' }, ' items.'],

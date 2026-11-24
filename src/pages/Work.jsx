@@ -44,7 +44,7 @@ const order = {
 // The outline's lines, in page order: each section, with the jobs under Experience.
 const outline = [
   { id: 'experience', name: sections.experience },
-  ...roles.map((role) => ({ id: role.id, name: role.company, logo: role.logo })),
+  ...roles.map((role) => ({ id: role.id, name: role.short ?? role.company, logo: role.logo })),
   { id: 'education', name: sections.education },
   { id: 'skills', name: sections.skills },
 ]
