@@ -2,7 +2,7 @@ import { logos } from './logos.js';
 
 export const xploreUrl = 'https://ieeexplore.ieee.org/author/659163992295229';
 
-export const papersNote = 'peer-reviewed IEEE conference papers in 2025.';
+export const papersNote = 'peer-reviewed IEEE conference papers in 2025';
 
 export const papers = [
   {
@@ -47,8 +47,10 @@ export const papers = [
   }
 ];
 
-export const reviewsNote = 'Invited reviewer for international journals and conferences.';
+export const reviewsNote = 'Paper titles are withheld for confidentiality.';
 
+// Each group holds the number of papers reviewed there. Their titles are private: see
+// review-titles.private.js.
 export const reviewVenues = [
   {
     id: 'iclr-2026',
@@ -58,18 +60,12 @@ export const reviewVenues = [
     kind: 'Top-Tier ML Conference',
     groups: [
       {
-        name: 'Workshop RSI — Resilient & Safe Intelligence',
-        papers: [
-          { title: 'Vision-Guided Iterative Refinement for Frontend Code Generation' }
-        ]
+        name: 'Workshop RSI — AI with Recursive Self-Improvement',
+        papers: 1
       },
       {
-        name: 'Workshop AIMS — AI for Medicine & Science',
-        papers: [
-          { title: 'SOK: A Taxonomy of Attack Vectors and Defense Strategies for Agentic Supply Chain Runtime' },
-          { title: 'Code Driven Game Theoretic Evolution of LLM Agents as Holistic Strategy Generators' },
-          { title: 'Optimal Aggregation Mechanisms for AI Benchmarking and Platinum Benchmarks' }
-        ]
+        name: 'Workshop AIMS — AI for Mechanism Design and Strategic Decision Making',
+        papers: 3
       }
     ]
   },
@@ -79,29 +75,15 @@ export const reviewVenues = [
     name: 'PLOS ONE',
     chip: 'PLOS ONE',
     kind: 'Journal',
-    groups: [
-      {
-        papers: [
-          { title: 'Syntactic Denoising and Multi-Strategy Auxiliary Enhancement for Aspect-based Sentiment Analysis' },
-          { title: 'Research of Text Paraphrase Generation Based on Self-Contrastive Learning' }
-        ]
-      }
-    ]
+    groups: [{ papers: 2 }]
   },
   {
     id: 'cvamd-2025',
-    logo: logos.miccai,
+    logo: logos.cvf,
     name: 'CVAMD 2025',
-    chip: 'MICCAI CVAMD',
-    kind: 'MICCAI Workshop',
-    groups: [
-      {
-        papers: [
-          { title: 'Dual-LVT: A Dual Attention Language-Vision Transformer for Tumor Segmentation' },
-          { title: 'Hierarchical Classification for Improved Histopathology Image Analysis' }
-        ]
-      }
-    ]
+    chip: 'ICCV CVAMD',
+    kind: 'ICCV Workshop',
+    groups: [{ papers: 2 }]
   },
   {
     id: 'dravidianlangtech-2026',
@@ -109,17 +91,7 @@ export const reviewVenues = [
     name: 'DravidianLangTech 2026',
     chip: 'ACL DravidianLangTech',
     kind: 'ACL Workshop',
-    groups: [
-      {
-        papers: [
-          { title: 'Multi Architecture Transformer Ensemble for Detecting Abusive Tamil Text Targeting Women' },
-          { title: 'Unsupervised Cross-Lingual Machine Translation for Low-Resource Indian Languages' },
-          { title: 'Shared Task on Prompt Style Recovery for Large Language Models in Telugu' },
-          { title: 'Hope Speech Detection in Code-Mixed Tulu Language Using Multiple Features' },
-          { title: 'Prompting and LoRA Adaptation for Tamil Abusive Language Detection' }
-        ]
-      }
-    ]
+    groups: [{ papers: 5 }]
   },
   {
     id: 'lt-edi-2026',
@@ -127,16 +99,21 @@ export const reviewVenues = [
     name: 'LT-EDI 2026',
     chip: 'LT-EDI',
     kind: 'ACL Workshop',
-    groups: [
-      {
-        papers: [
-          { title: 'Overview of the Multimodal Homophobia and Transphobia Meme Classification Shared Task' }
-        ]
-      }
-    ]
+    groups: [{ papers: 1 }]
+  },
+  {
+    id: 'spelll-2026',
+    logo: logos.spelll,
+    name: 'SPELLL 2026',
+    chip: 'SPELLL',
+    kind: 'Conference',
+    groups: [{ papers: 4 }]
   }
 ];
 
-export const reviewCount = reviewVenues
-  .flatMap((venue) => venue.groups)
-  .reduce((count, group) => count + group.papers.length, 0);
+const reviewGroups = reviewVenues.flatMap((venue) => venue.groups);
+
+export const reviewCount = reviewGroups.reduce((count, group) => count + group.papers, 0);
+
+// Each workshop group is a venue of its own, so ICLR's two workshops make two.
+export const reviewVenueCount = reviewGroups.length;

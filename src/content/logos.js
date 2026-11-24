@@ -3,15 +3,16 @@ import albertsons from '../assets/logos/albertsons.png'
 import amazon from '../assets/logos/amazon.png'
 import asu from '../assets/logos/asu.png'
 import bigquery from '../assets/logos/bigquery.svg'
+import cvf from '../assets/logos/cvf.svg'
 import git from '../assets/logos/git.svg'
 import iclr from '../assets/logos/iclr.svg'
 import ieee from '../assets/logos/ieee.svg'
 import java from '../assets/logos/java.svg'
 import lmkinfotech from '../assets/logos/lmkinfotech.png'
-import miccai from '../assets/logos/miccai.png'
 import plos from '../assets/logos/plos.png'
 import python from '../assets/logos/python.png'
 import snowflake from '../assets/logos/snowflake.png'
+import spelll from '../assets/logos/spelll.png'
 import spring from '../assets/logos/spring.svg'
 import vodafone from '../assets/logos/vodafone.svg'
 
@@ -31,6 +32,7 @@ export const logos = {
   ieee: { src: ieee, tile: '#00629b', fit: 0.88 },
   iclr: { src: iclr, tile: '#ffffff', fit: 0.88 },
   plos: { src: plos, tile: '#2a2d2b', fit: 0.84 },
-  miccai: { src: miccai, tile: '#ffffff', fit: 0.8 },
+  cvf: { src: cvf, tile: '#ffffff', fit: 0.74 },
+  spelll: { src: spelll, tile: '#ffffff', fit: 0.9 },
   acl: { src: acl, tile: '#ffffff', fit: 0.82 },
 }

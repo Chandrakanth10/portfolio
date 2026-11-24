@@ -1,6 +1,6 @@
 import Shell, { PageTitle, Section } from '../components/Shell.jsx'
 import { Rows, Row, ItemTitle, Body, Detail } from '../components/Row.jsx'
-import { Tags, LogoName } from '../components/Chip.jsx'
+import Chip, { Tags, LogoName } from '../components/Chip.jsx'
 import ExternalLink from '../components/ExternalLink.jsx'
 import { profile } from '../content/profile.js'
 import { xploreUrl, papersNote, papers } from '../content/research.js'
@@ -35,9 +35,9 @@ export default function Research() {
         order={0}
         lead={
           <>
-            <p>
+            <Chip>
               {papers.length} {papersNote}
-            </p>
+            </Chip>
             <ExternalLink href={xploreUrl}>IEEE Xplore Profile</ExternalLink>
           </>
         }
