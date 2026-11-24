@@ -68,14 +68,17 @@ export default function Media() {
       >
         <Rows>
           <Row order={writingOrder + 1} label={<Publication name={writing.outlet} logo={writing.logo} />}>
-            {writing.articles.map((article) => (
-              <div key={article.url} className="mt-6 first:mt-0">
-                <ItemTitle>
-                  <ExternalLink href={article.url}>{article.title}</ExternalLink>
-                </ItemTitle>
-                <Body className="mt-[.35rem]">{article.description}</Body>
-              </div>
-            ))}
+            {/* A faint line between the articles, spaced like the lines between the press rows. */}
+            <div className="grid gap-y-6 [&>*+*]:border-t [&>*+*]:border-chip-border [&>*+*]:pt-6">
+              {writing.articles.map((article) => (
+                <div key={article.url}>
+                  <ItemTitle>
+                    <ExternalLink href={article.url}>{article.title}</ExternalLink>
+                  </ItemTitle>
+                  <Body className="mt-[.35rem]">{article.description}</Body>
+                </div>
+              ))}
+            </div>
           </Row>
         </Rows>
       </Section>
