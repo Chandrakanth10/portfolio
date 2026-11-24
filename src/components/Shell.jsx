@@ -110,17 +110,17 @@ export default function Shell({ page, narrow, enter, children }) {
             )
           })}
         </nav>
-        {/* The line under the bar, on every page but the home. It has its own name so the
-            page transition can grow it from the middle and shrink it back (index.css). */}
-        {!home && (
-          <span
-            aria-hidden="true"
-            className="absolute inset-x-0 -bottom-px h-px bg-chip-border [view-transition-name:bar-line]"
-          />
-        )}
+        {/* The line under the bar. On a phone every page has it; on a wider screen the home
+            does not. It has its own name so the page transition can grow it from the middle
+            and shrink it back (index.css). */}
+        <span
+          aria-hidden="true"
+          className={`absolute inset-x-0 -bottom-px h-px bg-chip-border [view-transition-name:bar-line] ${home ? 'min-[34rem]:hidden' : ''}`}
+        />
       </header>
+      {/* On a phone, where the home also has the line, it starts as far below it as the other pages. */}
       {home ? (
-        <main className={`${column} flex flex-1 flex-col justify-center pt-6 pb-16 max-[34rem]:pt-3 max-[34rem]:pb-10`}>
+        <main className={`${column} flex flex-1 flex-col justify-center pt-6 pb-16 max-[34rem]:pt-5 max-[34rem]:pb-10`}>
           <div className="home">{children}</div>
         </main>
       ) : (
