@@ -7,8 +7,10 @@ import { reviewsNote, reviewVenues, reviewCount } from '../content/research.js'
 const enter = !location.hash
 
 // The venue with its logo, and its kind under it. On a targeted row the name turns the accent.
+// On a phone the titles go under the label, so a little more space keeps the kind apart
+// from a workshop's name under it.
 const VenueLabel = ({ venue }) => (
-  <span className="grid gap-y-[.15rem]">
+  <span className="grid gap-y-[.15rem] max-[34rem]:mb-[.4rem]">
     <LogoName logo={venue.logo} className="font-medium text-fg in-target:text-accent">
       {venue.name}
     </LogoName>
@@ -42,7 +44,7 @@ export default function Reviews() {
         lead={
           <>
             <p>
-              {reviewCount} papers across {reviewVenues.length} venues
+              {reviewCount} papers across {reviewVenues.length} venues.
             </p>
             <p>{reviewsNote}</p>
           </>

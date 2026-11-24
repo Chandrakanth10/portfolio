@@ -42,7 +42,7 @@ export function ItemTitle({ children }) {
 }
 
 export function LineTitle({ children }) {
-  return <p className="text-sm text-fg">{children}</p>
+  return <p className="text-sm leading-[1.55] text-fg">{children}</p>
 }
 
 export function Body({ className = '', children }) {

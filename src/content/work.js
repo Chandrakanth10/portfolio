@@ -102,7 +102,7 @@ export const education = [
     logo: logos.asu,
     degree: 'Master of Science, Computer Science',
     school: 'Arizona State University',
-    date: 'Jan 22 — Dec 23',
+    date: 'Jan 2022 — Dec 2023',
     notes: [
       ['GPA: ', { fig: '4.0/4.0' }, ' (Distinction).'],
       ['Focused on Distributed Systems and Software Engineering.']
