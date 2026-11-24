@@ -43,6 +43,33 @@ html {
   html {
     scroll-behavior: smooth;
   }
+
+  /* Moving to another page fades from one to the next. The top bar is named in Shell, so it
+     stays put while the page under it changes. */
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+/* The old page leaves quickly, so the two never show half-faded over each other. */
+::view-transition-old(root) {
+  animation: page-out .14s ease-in both;
+}
+
+::view-transition-new(root) {
+  animation: page-in .26s ease-out .06s both;
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
 }
 
 body {
