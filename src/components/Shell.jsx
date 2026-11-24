@@ -75,7 +75,7 @@ export default function Shell({ page, narrow, enter, children }) {
       {/* The same bar on every page. */}
       <header
         ref={bar}
-        className={`${pinned ? 'sticky' : ''} top-0 z-10 [view-transition-name:bar] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 bg-bg px-7 pt-[1.4rem] pb-3 max-[34rem]:px-[1.1rem] max-[34rem]:pt-[1.1rem]`}
+        className={`${pinned ? 'sticky' : ''} top-0 z-10 [view-transition-name:bar] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-b border-chip-border bg-bg px-7 pt-[1.4rem] pb-3 max-[34rem]:px-[1.1rem] max-[34rem]:pt-[1.1rem]`}
       >
         <a
           href={pageUrl()}
@@ -116,7 +116,7 @@ export default function Shell({ page, narrow, enter, children }) {
         </main>
       ) : (
         <>
-          <main className={`${column} ${inner} ${enter ? 'enter' : ''} pt-6 pb-14 max-[34rem]:pt-3`}>{children}</main>
+          <main className={`${column} ${inner} ${enter ? 'enter' : ''} pt-6 pb-14 max-[34rem]:pt-5`}>{children}</main>
           <footer className={`${column} ${inner} pb-16 max-[34rem]:pb-10`}>
             <Rows>
               <ContactRow />
