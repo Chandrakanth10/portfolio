@@ -9,17 +9,10 @@ export const profile = {
   location: 'Bay Area',
   // The intro as bullets, each in parts (see Rich.jsx): plain text, an underlined phrase, and a name with its logo.
   intro: [
-    [
-      { underline: 'Build data and ML pipelines' },
-      ' at ',
-      { name: 'Walmart Global Tech', logo: logos.walmart },
-      ', in ',
-      { name: 'Python', logo: logos.python },
-      ' on ',
-      { name: 'Airflow', logo: logos.airflow },
-    ],
-    [{ underline: 'Publish research' }, ' on LLMs in software engineering'],
-    [{ underline: 'Get quoted' }, ' on AI and cloud'],
+    [{ underline: 'Build data and ML pipelines' }, ' at ', { name: 'Walmart Global Tech', logo: logos.walmart }],
+    [{ underline: 'Research' }, ' LLMs, cloud and quantum AI'],
+    [{ underline: 'Review papers' }, ' for ICLR and ACL workshops and PLOS ONE'],
+    [{ underline: 'Write and get quoted' }, ' on AI and cloud'],
   ],
   contacts: [
     {
