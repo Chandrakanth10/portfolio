@@ -6,6 +6,8 @@ const Variant = createContext('page')
 const rowsClass = {
   home: 'grid gap-y-[.6rem] max-[34rem]:gap-y-[.85rem]',
   page: 'grid gap-y-6',
+  // A faint line, like the one under the top bar, halfway between each row and the next.
+  divided: 'grid gap-y-6 [&>*+*]:border-t [&>*+*]:border-chip-border [&>*+*]:pt-6',
   tight: 'grid gap-y-[.6rem]',
 }
 

@@ -42,7 +42,7 @@ export default function Research() {
           </>
         }
       >
-        <Rows>
+        <Rows variant="divided">
           {papers.map((paper, i) => (
             <Row key={paper.id} id={paper.id} order={1 + i} label={<LogoName logo={paper.logo}>{paper.venue}</LogoName>}>
               <ItemTitle>

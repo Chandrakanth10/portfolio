@@ -48,7 +48,7 @@ export default function Reviews() {
           </>
         }
       >
-        <Rows>
+        <Rows variant="divided">
           {reviewVenues.map((venue, i) => (
             <Row key={venue.id} id={venue.id} order={1 + i} label={<VenueLabel venue={venue} />}>
               {venue.groups.map((group, g) => (
