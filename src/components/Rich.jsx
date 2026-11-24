@@ -1,14 +1,15 @@
 import { Tile } from './Chip.jsx'
 
-// A phrase stays on one line while its bullet's text is at least 18 characters wide
-// (the longest phrase); with very large text it wraps instead of overflowing.
+// A phrase stays on one line while its bullet's text is at least 27 characters wide
+// (the longest phrase, "Build data and ML pipelines"); with very large text it wraps
+// instead of overflowing.
 const introUnderline =
-  '@min-[18ch]:whitespace-nowrap underline decoration-1 decoration-[color:color-mix(in_oklab,var(--color-muted)_60%,transparent)] underline-offset-[.28em]'
+  '@min-[27ch]:whitespace-nowrap underline decoration-1 decoration-[color:color-mix(in_oklab,var(--color-muted)_60%,transparent)] underline-offset-[.28em]'
 
 // A name with its logo in a small box. It stays on one line while its bullet's text is
-// at least 15 characters wide (the widest box, Albertsons); below that it may break.
+// at least 24 characters wide (the widest box, Walmart Global Tech); below that it may break.
 const Named = ({ name, logo }) => (
-  <span className="@min-[15ch]:whitespace-nowrap wrap-anywhere rounded-[.1875rem] border border-chip-border bg-chip pt-[.04em] pr-[.45em] pb-[.1em] pl-[.4em] text-fg">
+  <span className="@min-[24ch]:whitespace-nowrap wrap-anywhere rounded-[.1875rem] border border-chip-border bg-chip pt-[.04em] pr-[.45em] pb-[.1em] pl-[.4em] text-fg">
     <Tile
       logo={logo}
       className="mr-[.4em] inline-flex size-[1.05em] items-center justify-center rounded-[.1875rem] align-[-.18em]"

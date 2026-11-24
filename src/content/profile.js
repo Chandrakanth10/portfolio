@@ -10,15 +10,13 @@ export const profile = {
   // The intro as bullets, each in parts (see Rich.jsx): plain text, an underlined phrase, and a name with its logo.
   intro: [
     [
-      { underline: 'Build data systems' },
+      { underline: 'Build data and ML pipelines' },
       ' at ',
-      { name: 'Albertsons', logo: logos.albertsons },
+      { name: 'Walmart Global Tech', logo: logos.walmart },
       ', in ',
       { name: 'Python', logo: logos.python },
       ' on ',
-      { name: 'Snowflake', logo: logos.snowflake },
-      ' and ',
-      { name: 'BigQuery', logo: logos.bigquery },
+      { name: 'Airflow', logo: logos.airflow },
     ],
     [{ underline: 'Publish research' }, ' on LLMs in software engineering'],
     [{ underline: 'Get quoted' }, ' on AI and cloud'],

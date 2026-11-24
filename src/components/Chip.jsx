@@ -51,7 +51,7 @@ const look = (current, more) => {
 
 const linkHover = 'transition-colors duration-150 hover:border-accent hover:text-fg'
 
-// A small label beside a name or a date, such as Contract or Now.
+// A small label beside a name or a date, such as Now.
 export function Tag({ accent, children }) {
   return (
     <span
