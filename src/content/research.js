@@ -5,7 +5,7 @@ export const xploreUrl = 'https://ieeexplore.ieee.org/author/659163992295229';
 export const papersNote = 'peer-reviewed IEEE conference papers';
 
 // Newest first, in the order IEEE Xplore added them. Each title links to its IEEE Xplore article.
-export const papers = [
+const newestFirst = [
   {
     id: 'iemcon-2026-oracleforge',
     venue: 'IEEE IEMCON 2026',
@@ -84,6 +84,10 @@ export const papers = [
     authors: ['C. Puligundla']
   }
 ];
+
+// The papers I wrote alone come first, then the rest, each newest first.
+const soleAuthor = (paper) => paper.authors.length === 1;
+export const papers = [...newestFirst.filter(soleAuthor), ...newestFirst.filter((paper) => !soleAuthor(paper))];
 
 export const reviewsNote = 'Paper titles are withheld for confidentiality.';
 
