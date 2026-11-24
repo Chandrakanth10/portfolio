@@ -6,9 +6,10 @@ const base =
 const padding = (logo) => (logo ? 'relative pl-[calc(1.5rem+.5em)] pr-[.55rem]' : 'px-[.55rem]')
 
 // A logo on its coloured tile. The tile is decoration: the name next to it is the text.
+// It clips its logo, so a logo with its own square background keeps the tile's rounded corners.
 export function Tile({ logo, className }) {
   return (
-    <span aria-hidden="true" className={className} style={{ backgroundColor: logo.tile }}>
+    <span aria-hidden="true" className={`overflow-hidden ${className}`} style={{ backgroundColor: logo.tile }}>
       <img
         src={logo.src}
         alt=""
