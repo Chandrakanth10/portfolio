@@ -12,7 +12,7 @@ const Named = ({ name, logo }) => (
   <span className="@min-[24ch]:whitespace-nowrap wrap-anywhere rounded-[.1875rem] border border-chip-border bg-chip pt-[.04em] pr-[.45em] pb-[.1em] pl-[.4em] text-fg">
     <Tile
       logo={logo}
-      className="mr-[.4em] inline-flex size-[1.05em] items-center justify-center rounded-[.1875rem] align-[-.18em]"
+      className="mr-[.4em] inline-flex size-[1.05em] items-center justify-center rounded-[.1875rem] relative -top-[.09em] align-middle"
     />
     {name}
   </span>
