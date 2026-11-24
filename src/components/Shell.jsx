@@ -76,7 +76,7 @@ export default function Shell({ page, narrow, enter, children }) {
       {/* The same bar on every page. */}
       <header
         ref={bar}
-        className={`${pinned ? 'sticky' : ''} top-0 z-10 [view-transition-name:bar] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-b border-chip-border bg-bg px-7 pt-[1.4rem] pb-3 max-[34rem]:px-[1.1rem] max-[34rem]:pt-[1.1rem]`}
+        className={`${pinned ? 'sticky' : 'relative'} top-0 z-10 [view-transition-name:bar] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-b border-transparent bg-bg px-7 pt-[1.4rem] pb-3 max-[34rem]:px-[1.1rem] max-[34rem]:pt-[1.1rem]`}
       >
         <a
           href={pageUrl()}
@@ -110,6 +110,14 @@ export default function Shell({ page, narrow, enter, children }) {
             )
           })}
         </nav>
+        {/* The line under the bar, on every page but the home. It has its own name so the
+            page transition can grow it from the middle and shrink it back (index.css). */}
+        {!home && (
+          <span
+            aria-hidden="true"
+            className="absolute inset-x-0 -bottom-px h-px bg-chip-border [view-transition-name:bar-line]"
+          />
+        )}
       </header>
       {home ? (
         <main className={`${column} flex flex-1 flex-col justify-center pt-6 pb-16 max-[34rem]:pt-3 max-[34rem]:pb-10`}>
