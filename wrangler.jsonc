@@ -1,7 +1,14 @@
 {
   "name": "portfolio",
   "compatibility_date": "2026-11-01",
+  // theckp.com is the site's address. Routes would turn workers.dev off by default; it stays
+  // on so links shared before the move still work.
+  "workers_dev": true,
   "preview_urls": false,
+  "routes": [
+    { "pattern": "theckp.com", "custom_domain": true },
+    { "pattern": "www.theckp.com", "custom_domain": true }
+  ],
   "assets": {
     "directory": "./dist"
   }
