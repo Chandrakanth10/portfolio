@@ -36,9 +36,11 @@ export function Rows({ variant = 'page', children }) {
   )
 }
 
-// The parts that stack inside an inner-page row's content.
+// The parts that stack inside an inner-page row's content. In the title and the body, a word
+// too long for its line, as with very large text on a narrow screen, breaks instead of
+// running off the page.
 export function ItemTitle({ children }) {
-  return <h3 className="text-[.9375rem] font-medium text-fg">{children}</h3>
+  return <h3 className="text-[.9375rem] font-medium wrap-break-word text-fg">{children}</h3>
 }
 
 export function LineTitle({ children }) {
@@ -46,7 +48,7 @@ export function LineTitle({ children }) {
 }
 
 export function Body({ className = '', children }) {
-  return <p className={`text-sm leading-[1.6] text-soft ${className}`}>{children}</p>
+  return <p className={`text-sm leading-[1.6] wrap-break-word text-soft ${className}`}>{children}</p>
 }
 
 export function Detail({ className = '', children }) {

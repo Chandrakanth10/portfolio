@@ -12,12 +12,14 @@ const enter = !location.hash
 const titleLink =
   'group-hover:text-accent group-focus-within:text-accent [&_svg]:transition-transform [&_svg]:duration-200 group-hover:[&_svg]:translate-x-[.15em] group-hover:[&_svg]:-translate-y-[.15em] group-focus-within:[&_svg]:translate-x-[.15em] group-focus-within:[&_svg]:-translate-y-[.15em] motion-reduce:[&_svg]:transition-none'
 
+// A name stays on one line (lines break between names), unless it is wider than the line
+// itself, as with very large text on a narrow screen.
 const Authors = ({ names }) => (
-  <Detail className="mt-[.45rem] leading-[1.6]">
+  <Detail className="mt-[.45rem] leading-[1.6] wrap-break-word">
     {names.map((name, i) => (
       <span key={name}>
         {i > 0 && ', '}
-        {name === profile.authorName ? <span className="text-fg">{name}</span> : name}
+        <span className={name === profile.authorName ? 'text-fg' : undefined}>{name.replaceAll(' ', '\u00a0')}</span>
       </span>
     ))}
   </Detail>
@@ -46,7 +48,7 @@ export default function Research() {
           {papers.map((paper, i) => (
             <Row key={paper.id} id={paper.id} order={1 + i} label={<LogoName logo={paper.logo}>{paper.venue}</LogoName>}>
               <ItemTitle>
-                <ExternalLink href={xploreUrl} className={titleLink}>
+                <ExternalLink href={paper.url} className={titleLink}>
                   {paper.title}
                 </ExternalLink>
               </ItemTitle>

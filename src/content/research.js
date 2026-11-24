@@ -2,48 +2,86 @@ import { logos } from './logos.js';
 
 export const xploreUrl = 'https://ieeexplore.ieee.org/author/659163992295229';
 
-export const papersNote = 'peer-reviewed IEEE conference papers in 2025';
+export const papersNote = 'peer-reviewed IEEE conference papers';
 
+// Newest first, in the order IEEE Xplore added them. Each title links to its IEEE Xplore article.
 export const papers = [
   {
-    id: 'istas-2025',
-    venue: 'IEEE ISTAS 2025',
-    chip: 'IEEE ISTAS',
-    title: 'Bridging Quantum and Classical AI: Cloud-Based Quantum Computing for Machine Learning',
-    description: 'Explores the integration of quantum computing with classical AI through cloud-based architectures for machine learning applications.',
+    id: 'iemcon-2026-oracleforge',
+    venue: 'IEEE IEMCON 2026',
+    chip: 'IEEE IEMCON',
+    title: 'OracleForge: Counterexample-Driven Test Oracle Synthesis for LLM-Generated Unit Tests',
+    url: 'https://ieeexplore.ieee.org/document/11794698/',
+    description: 'Strengthens the assertions in LLM-generated unit tests with mutation analysis, metamorphic relations and counterexamples.',
     logo: logos.ieee,
-    topics: ['Quantum computing', 'Cloud', 'Machine learning'],
+    topics: ['LLMs', 'Software testing', 'Test oracles'],
+    authors: ['C. Puligundla', 'N. Shaik', 'K. A. Alobaid', 'P. R. Seknametla', 'R. Sunkara']
+  },
+  {
+    id: 'iemcon-2026-specshield',
+    venue: 'IEEE IEMCON 2026',
+    chip: 'IEEE IEMCON',
+    title: 'SpecShield: Probabilistic Contract-Guided LLM Program Repair under Weak Test Suites',
+    url: 'https://ieeexplore.ieee.org/document/11794691/',
+    description: 'Checks LLM-proposed program repairs against contracts inferred from code, documentation and runtime traces when tests are weak.',
+    logo: logos.ieee,
+    topics: ['LLMs', 'Program repair', 'Software contracts'],
+    authors: ['C. Puligundla', 'K. Ramamurthy', 'K. A. Alobaid', 'N. H. Badabagni', 'O. Oyebode']
+  },
+  {
+    id: 'intcec-2026-edge',
+    venue: 'IEEE INTCEC 2026',
+    chip: 'IEEE INTCEC',
+    title: 'Inference at the Edge: A Runtime Quantization Dispatcher for Real-Time Industrial Deployment of Small Language Models',
+    url: 'https://ieeexplore.ieee.org/document/11764784/',
+    description: 'Picks a quantization scheme for each request so small language models run in real time on industrial edge devices.',
+    logo: logos.ieee,
+    topics: ['Small language models', 'Quantization', 'Edge AI'],
     authors: ['C. Puligundla']
   },
   {
-    id: 'icccnt-2025',
-    venue: 'IEEE ICCCNT 2025',
-    chip: 'IEEE ICCCNT',
-    title: 'Scalable Intelligence: A Survey on Deploying AI Models in Distributed Cloud Platforms',
-    description: 'Surveys scalable deployment strategies for AI models across distributed cloud platforms, examining orchestration, resource optimization, and inference at scale.',
+    id: 'intcec-2026-carat',
+    venue: 'IEEE INTCEC 2026',
+    chip: 'IEEE INTCEC',
+    title: 'CARAT: Causal Attribution of Reasoning-Activated Tool Hallucination',
+    url: 'https://ieeexplore.ieee.org/document/11764843/',
+    description: 'Traces the reasoning steps that lead language models to hallucinate tool calls, and uses them to cut those errors.',
     logo: logos.ieee,
-    topics: ['Cloud', 'Distributed systems', 'Model serving'],
+    topics: ['LLM agents', 'Tool use', 'Hallucination'],
     authors: ['C. Puligundla']
-  },
-  {
-    id: 'aibthings-2025-spx',
-    venue: 'IEEE AIBThings 2025',
-    chip: 'IEEE AIBThings',
-    title: 'SPX: A Novel LLM-Based Framework for Explaining and Estimating User Story Points',
-    description: 'Presents a novel LLM-based framework for automated story point estimation and explanation in agile development.',
-    logo: logos.ieee,
-    topics: ['LLMs', 'Agile', 'Effort estimation'],
-    authors: ['A. Jadhav', 'C. Puligundla', 'S. R. Chigurupati', 'P. Jalan', 'S. Bhogavalli']
   },
   {
     id: 'aibthings-2025-triage',
     venue: 'IEEE AIBThings 2025',
     chip: 'IEEE AIBThings',
     title: 'Integrating LLMs for Automated Bug Triaging and Root Cause Localization in Software Systems',
-    description: 'Proposes an LLM-based approach for automated bug triaging and root cause localization in large-scale software systems.',
+    url: 'https://ieeexplore.ieee.org/document/11296163/',
+    description: 'Combines LLMs, graphs and software-system data to triage bugs, locate probable root causes and generate tests.',
     logo: logos.ieee,
     topics: ['LLMs', 'Bug triage', 'Root cause analysis'],
     authors: ['P. Pisal', 'P. Jalan', 'S. R. Chigurupati', 'C. Puligundla', 'S. Bhogavalli']
+  },
+  {
+    id: 'aibthings-2025-spx',
+    venue: 'IEEE AIBThings 2025',
+    chip: 'IEEE AIBThings',
+    title: 'SPX: A Novel LLM-Based Framework for Explaining and Estimating User Story Points',
+    url: 'https://ieeexplore.ieee.org/document/11296255/',
+    description: 'Presents a novel LLM-based framework for automated story point estimation and explanation in agile development.',
+    logo: logos.ieee,
+    topics: ['LLMs', 'Agile', 'Effort estimation'],
+    authors: ['A. Jadhav', 'C. Puligundla', 'S. R. Chigurupati', 'P. Jalan', 'S. Bhogavalli']
+  },
+  {
+    id: 'istas-2025',
+    venue: 'IEEE ISTAS 2025',
+    chip: 'IEEE ISTAS',
+    title: 'Bridging Quantum and Classical AI: Cloud-Based Quantum Computing for Machine Learning',
+    url: 'https://ieeexplore.ieee.org/document/11269628/',
+    description: 'Explores the integration of quantum computing with classical AI through cloud-based architectures for machine learning applications.',
+    logo: logos.ieee,
+    topics: ['Quantum computing', 'Cloud', 'Machine learning'],
+    authors: ['C. Puligundla']
   }
 ];
 
