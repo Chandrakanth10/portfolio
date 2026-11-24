@@ -1,5 +1,5 @@
 import Shell, { PageTitle, Section } from '../components/Shell.jsx'
-import { Rows, Row, Detail } from '../components/Row.jsx'
+import { Rows, Row, Detail, DashList } from '../components/Row.jsx'
 import Chip, { LogoName } from '../components/Chip.jsx'
 import { reviewsNote, reviewVenues, reviewCount, reviewVenueCount } from '../content/research.js'
 // Empty on the live site; the titles show only on `npm run dev` (vite.config.js).
@@ -21,19 +21,6 @@ const VenueLabel = ({ venue }) => (
 )
 
 const plural = (count) => `${count} ${count === 1 ? 'paper' : 'papers'}`
-
-const Titles = ({ titles }) => (
-  <ul role="list" className="mt-[.35rem] grid gap-y-[.35rem]">
-    {titles.map((title) => (
-      <li key={title} className="grid grid-cols-[1.5em_minmax(0,1fr)] text-sm leading-[1.55] text-fg">
-        <span aria-hidden="true" className="text-muted">
-          –
-        </span>
-        <span>{title}</span>
-      </li>
-    ))}
-  </ul>
-)
 
 export default function Reviews() {
   return (
@@ -61,7 +48,12 @@ export default function Reviews() {
                 <div key={group.name ?? g} className="mt-4 first:mt-0">
                   {group.name && <Detail className="mb-[.15rem]">{group.name}</Detail>}
                   <p className="text-sm text-soft">{plural(group.papers)}</p>
-                  {reviewTitles[venue.id]?.[g] && <Titles titles={reviewTitles[venue.id][g]} />}
+                  {reviewTitles[venue.id]?.[g] && (
+                    <DashList
+                      className="mt-[.35rem]"
+                      items={reviewTitles[venue.id][g].map((title) => ({ key: title, content: title }))}
+                    />
+                  )}
                 </div>
               ))}
             </Row>

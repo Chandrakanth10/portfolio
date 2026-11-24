@@ -120,7 +120,7 @@ h2:target {
     animation-delay: calc(var(--i, 0) * 55ms + 80ms);
   }
 
-  /* Pages with .enter (Work, Research and Reviews) arrive more slowly than the home. */
+  /* Pages with .enter (Work, Research, Reviews and Media) arrive more slowly than the home. */
   .enter {
     --step: 100ms;
   }

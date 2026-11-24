@@ -4,14 +4,23 @@ import albertsons from '../assets/logos/albertsons.png'
 import amazon from '../assets/logos/amazon.png'
 import asu from '../assets/logos/asu.png'
 import bigquery from '../assets/logos/bigquery.svg'
+import cio from '../assets/logos/cio.png'
 import cvf from '../assets/logos/cvf.svg'
+import devops from '../assets/logos/devops.png'
+import fortune from '../assets/logos/fortune.png'
+import hackernoon from '../assets/logos/hackernoon.png'
 import iclr from '../assets/logos/iclr.svg'
 import ieee from '../assets/logos/ieee.svg'
 import java from '../assets/logos/java.svg'
+import leaddev from '../assets/logos/leaddev.png'
+import okoone from '../assets/logos/okoone.png'
+import origen from '../assets/logos/origen.png'
 import plos from '../assets/logos/plos.png'
+import pymnts from '../assets/logos/pymnts.png'
 import python from '../assets/logos/python.png'
 import snowflake from '../assets/logos/snowflake.png'
 import spelll from '../assets/logos/spelll.png'
+import venturebeat from '../assets/logos/venturebeat.png'
 import vodafone from '../assets/logos/vodafone.svg'
 import walmart from '../assets/logos/walmart.svg'
 
@@ -33,4 +42,14 @@ export const logos = {
   cvf: { src: cvf, tile: '#ffffff', fit: 0.74 },
   spelll: { src: spelll, tile: '#ffffff', fit: 0.9 },
   acl: { src: acl, tile: '#ffffff', fit: 0.82 },
+  // Media: each publication's own icon, or its wordmark where the icon is not distinctive.
+  fortune: { src: fortune, tile: '#eef8f6', fit: 1 },
+  venturebeat: { src: venturebeat, tile: '#ffffff', fit: 0.8 },
+  cio: { src: cio, tile: '#ffffff', fit: 0.84 },
+  pymnts: { src: pymnts, tile: '#2a2d2b', fit: 0.72 },
+  leaddev: { src: leaddev, tile: '#ff326e', fit: 1 },
+  devops: { src: devops, tile: '#ffffff', fit: 0.8 },
+  okoone: { src: okoone, tile: '#ffffff', fit: 0.9 },
+  origen: { src: origen, tile: '#006cd3', fit: 0.84 },
+  hackernoon: { src: hackernoon, tile: '#00ff00', fit: 0.8 },
 }

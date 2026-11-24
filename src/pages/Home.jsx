@@ -6,7 +6,7 @@ import Rich from '../components/Rich.jsx'
 import { profile } from '../content/profile.js'
 import { roles } from '../content/work.js'
 import { papers, reviewVenues, reviewCount } from '../content/research.js'
-import { press, writing } from '../content/media.js'
+import { publications, writing } from '../content/media.js'
 import { pageUrl } from '../lib/url.js'
 
 // The first entry for each distinct value of `key`, in order.
@@ -15,7 +15,6 @@ const firstOfEach = (list, key) => list.filter((item, i) => list.findIndex((othe
 const currentRole = roles.find((role) => role.current)
 const pastRoles = roles.filter((role) => role.onHome && !role.current)
 const paperChips = firstOfEach(papers, 'chip')
-const publications = firstOfEach(press, 'pub')
 const shownPublications = publications.slice(0, 6)
 const morePublications = publications.length - shownPublications.length
 
@@ -84,8 +83,8 @@ export default function Home() {
         </Row>
         <Row label="Quoted in">
           {shownPublications.map((item) => (
-            <Chip key={item.pubId} href={pageUrl('media', item.pubId)}>
-              {item.pub}
+            <Chip key={item.id} href={pageUrl('media', item.id)}>
+              {item.name}
             </Chip>
           ))}
           {morePublications > 0 && (

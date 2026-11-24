@@ -43,16 +43,29 @@ export function ItemTitle({ children }) {
   return <h3 className="text-[.9375rem] font-medium wrap-break-word text-fg">{children}</h3>
 }
 
-export function LineTitle({ children }) {
-  return <p className="text-sm leading-[1.55] text-fg">{children}</p>
-}
-
 export function Body({ className = '', children }) {
   return <p className={`text-sm leading-[1.6] wrap-break-word text-soft ${className}`}>{children}</p>
 }
 
 export function Detail({ className = '', children }) {
   return <p className={`text-[.8125rem] text-muted ${className}`}>{children}</p>
+}
+
+// A tight list with a dash before each item, as the Reviews and Media rows list their titles.
+// Each item is { key, content }. A word too long for its line breaks, as in a title.
+export function DashList({ className = '', items }) {
+  return (
+    <ul role="list" className={`grid gap-y-[.35rem] ${className}`}>
+      {items.map(({ key, content }) => (
+        <li key={key} className="grid grid-cols-[1.5em_minmax(0,1fr)] text-sm leading-[1.55] wrap-break-word text-fg">
+          <span aria-hidden="true" className="text-muted">
+            –
+          </span>
+          <span>{content}</span>
+        </li>
+      ))}
+    </ul>
+  )
 }
 
 // Each item is an array of parts (see Rich.jsx).
