@@ -42,7 +42,7 @@ export default function Research() {
         id="papers"
         title="Papers"
         hideTitle
-        order={1}
+        order={0}
         lead={
           <>
             <p>
@@ -53,8 +53,8 @@ export default function Research() {
         }
       >
         <Rows>
-          {papers.map((paper) => (
-            <Row key={paper.id} id={paper.id} label={<Venue paper={paper} />}>
+          {papers.map((paper, i) => (
+            <Row key={paper.id} id={paper.id} order={1 + i} label={<Venue paper={paper} />}>
               <ItemTitle>
                 <ExternalLink href={xploreUrl} className={titleLink}>
                   {paper.title}

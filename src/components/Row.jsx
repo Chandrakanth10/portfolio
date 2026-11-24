@@ -69,10 +69,11 @@ export function Bullets({ items }) {
   )
 }
 
-export function Row({ id, label, children }) {
+// `order` is the row's own turn in a page's entrance (index.css).
+export function Row({ id, label, order, children }) {
   const kind = use(Variant) === 'home' ? 'home' : 'page'
   return (
-    <div id={id} className={`group ${rowClass[kind]} [&:target>dt]:text-accent`}>
+    <div id={id} className={`group ${rowClass[kind]} [&:target>dt]:text-accent`} style={{ '--i': order }}>
       <dt className={dtClass[kind]}>{label}</dt>
       <dd className={ddClass[kind]}>{children}</dd>
     </div>

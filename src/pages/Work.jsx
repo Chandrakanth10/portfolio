@@ -278,8 +278,8 @@ export default function Work() {
 
       <Section id="skills" title={sections.skills} loose order={order.skills}>
         <Rows variant="tight">
-          {skills.map((group) => (
-            <Row key={group.group} label={group.group}>
+          {skills.map((group, i) => (
+            <Row key={group.group} order={order.skills + i} label={group.group}>
               <Tags items={group.items} />
             </Row>
           ))}
