@@ -1,6 +1,6 @@
 import Shell, { PageTitle, Section } from '../components/Shell.jsx'
 import { Rows, Row, ItemTitle, Body, Detail } from '../components/Row.jsx'
-import { Tags, Tile } from '../components/Chip.jsx'
+import { Tags, LogoName } from '../components/Chip.jsx'
 import ExternalLink from '../components/ExternalLink.jsx'
 import { profile } from '../content/profile.js'
 import { xploreUrl, papersNote, papers } from '../content/research.js'
@@ -11,16 +11,6 @@ const enter = !location.hash
 // Pointing at or tabbing into a row lights its title and nudges the arrow.
 const titleLink =
   'group-hover:text-accent group-focus-within:text-accent [&_svg]:transition-transform [&_svg]:duration-200 group-hover:[&_svg]:translate-x-[.15em] group-hover:[&_svg]:-translate-y-[.15em] group-focus-within:[&_svg]:translate-x-[.15em] group-focus-within:[&_svg]:-translate-y-[.15em] motion-reduce:[&_svg]:transition-none'
-
-const Venue = ({ paper }) => (
-  <span className="flex items-baseline gap-[.55rem]">
-    <Tile
-      logo={paper.logo}
-      className="flex h-[1.05rem] w-[1.9rem] flex-none items-center justify-center self-center overflow-hidden rounded-[.18rem]"
-    />
-    {paper.venue}
-  </span>
-)
 
 const Authors = ({ names }) => (
   <Detail className="mt-[.45rem] leading-[1.6]">
@@ -54,7 +44,7 @@ export default function Research() {
       >
         <Rows>
           {papers.map((paper, i) => (
-            <Row key={paper.id} id={paper.id} order={1 + i} label={<Venue paper={paper} />}>
+            <Row key={paper.id} id={paper.id} order={1 + i} label={<LogoName logo={paper.logo}>{paper.venue}</LogoName>}>
               <ItemTitle>
                 <ExternalLink href={xploreUrl} className={titleLink}>
                   {paper.title}

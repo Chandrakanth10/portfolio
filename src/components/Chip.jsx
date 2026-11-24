@@ -19,6 +19,20 @@ export function Tile({ logo, className }) {
   )
 }
 
+// A name with its logo on a small wide tile, as the Research and Reviews rows label their
+// venues. The name may wrap anywhere, so a long one never pushes past a narrow screen.
+export function LogoName({ logo, className = '', children }) {
+  return (
+    <span className={`flex items-baseline gap-[.55rem] ${className}`}>
+      <Tile
+        logo={logo}
+        className="flex h-[1.05rem] w-[1.9rem] flex-none items-center justify-center self-center overflow-hidden rounded-[.18rem]"
+      />
+      <span className="min-w-0 wrap-anywhere">{children}</span>
+    </span>
+  )
+}
+
 const Logo = ({ logo }) => (
   <Tile
     logo={logo}

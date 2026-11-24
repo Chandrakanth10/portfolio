@@ -5,7 +5,7 @@ import ContactRow from '../components/ContactRow.jsx'
 import Rich from '../components/Rich.jsx'
 import { profile } from '../content/profile.js'
 import { roles } from '../content/work.js'
-import { papers, reviewVenues } from '../content/research.js'
+import { papers, reviewVenues, reviewCount } from '../content/research.js'
 import { press, writing } from '../content/media.js'
 import { pageUrl } from '../lib/url.js'
 
@@ -15,9 +15,6 @@ const firstOfEach = (list, key) => list.filter((item, i) => list.findIndex((othe
 const currentRole = roles.find((role) => role.current)
 const pastRoles = roles.filter((role) => role.onHome && !role.current)
 const paperChips = firstOfEach(papers, 'chip')
-const reviewCount = reviewVenues
-  .flatMap((venue) => venue.groups)
-  .reduce((count, group) => count + group.papers.length, 0)
 const publications = firstOfEach(press, 'pub')
 const shownPublications = publications.slice(0, 6)
 const morePublications = publications.length - shownPublications.length
